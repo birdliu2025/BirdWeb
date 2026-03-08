@@ -1,33 +1,56 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>mynewwed</title>
-		<style>
-		.test {
-			color: #66ffc8;
-		}
-		.to_￼AF {
-			color: #ffb366;
-			text-align: center;
-			
-		}
-		p2 {
-			color: #000000;
-			font-size:240px;
-		}
-		
-		</style>
-	</head>
-	
-	<body>
-		<h1 class="fuck">aa</h1>
-		<ul>
-			<li>a</li>
-			<li>b</li>
-			<li>c</li>
-		</ul>
-		<img src="bigdan.png" width="200">
-		<p class="to_AF">add new file-><a href="add_file/add_go_file.html">clenl me</a><-</p>
-		<p2></p2>
-	</body>
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <meta charset="UTF-8">
+        <title>ABOUT</title>
+        <style>
+            :root {
+                --mar-left: 15%
+            }
+            .shars {
+                margin-left: var(--mar-left);
+                font-family:'Courier New', Courier, monospace;
+                text-decoration: none;
+                color: #000000;
+                margin-top: 1%;
+            }
+        </style>
+    </head>
+    <body>
+        <audio id="mp3" src="Bad_to_the_bone.mp3" autoplay></audio>
+        <div style="min-width: 14px;height: 50px;background-color: #f9f9f9;margin-top:10px;border-radius: 10px;margin-left: 14xp;box-shadow: 5px 5px 14px gray;">
+            <a href="yes.html" class="shars">听美味😋歌曲🎵</a>
+            <a href="cfdl.html" class="shars">cfdl.html</a>
+            <a href="abc.html" class="shars">abc</a>
+            <a href="a" class="shars">@</a>
+            <img src="bigdan.png" style="width: 10px;height: 10px;" class="shars">
+        </div>
+        <button class="control-btn play-btn" id="playBtn" style="position: fixed;" onclick="music()">
+            <i class="fas fa-play" id="playIcon" style="width: 10px;"></i>
+            <img src="我坏到骨子里😡.png" style="width: 70px;">
+        </button>
+
+        
+        <script>
+        let music = document.getElementById('mp3');
+
+        let playBtn = document.getElementById('playBtn');
+        let playIcon = document.getElementById('playIcon');
+        let isPlaying = true;
+        
+        playBtn.addEventListener('click', function() {
+            if (isPlaying) {
+                playIcon.classList.remove('fa-play');
+                playIcon.classList.add('fa-pause');
+                music.play();
+            } else {
+                playIcon.classList.remove('fa-pause');
+                playIcon.classList.add('fa-play');
+                music.pause();
+            }
+            isPlaying = !isPlaying;
+        });
+        </script>
+    </body>
 </html>
