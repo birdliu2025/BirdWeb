@@ -1,56 +1,671 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-        <meta charset="UTF-8">
-        <title>ABOUT</title>
-        <style>
-            :root {
-                --mar-left: 15%
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>星辰印象 | 创意无限主页</title>
+    <!-- 引入 Google Fonts 提升字体质感 -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 (免费图标库) 增加视觉细节 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fafcff;
+            color: #1a1e2b;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        /* 自定义滚动条 */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #eef2f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #b9c2d4;
+            border-radius: 12px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #8f9bb3;
+        }
+
+        /* 容器约束，内容居中且优雅留白 */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        /* 头部导航 - 无跳转，纯装饰 */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 0;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #2B3B5C, #1E2A44);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .logo i {
+            background: none;
+            color: #3b4e7a;
+            font-size: 2rem;
+            -webkit-background-clip: unset;
+            background-clip: unset;
+            color: #2c3e66;
+        }
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            font-weight: 500;
+            color: #2c3e50;
+        }
+        .nav-links span {
+            cursor: default;
+            transition: color 0.2s;
+            font-size: 1rem;
+        }
+        .nav-links span:hover {
+            color: #4361ee;
+        }
+        /* 装饰按钮，无实际跳转 */
+        .mock-btn {
+            background: transparent;
+            border: 1.5px solid #cdd9ed;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-weight: 600;
+            transition: 0.2s;
+            cursor: default;
+            color: #2c3e66;
+        }
+        .mock-btn:hover {
+            background: #f0f4fe;
+            border-color: #8ba0c0;
+        }
+
+        /* Hero 区域 - 核心视觉 */
+        .hero {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            padding: 48px 0 64px 0;
+            gap: 48px;
+        }
+        .hero-content {
+            flex: 1.2;
+            min-width: 280px;
+        }
+        .hero-badge {
+            background: #eef2ff;
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #2c3e66;
+            margin-bottom: 24px;
+            letter-spacing: 0.3px;
+        }
+        .hero-content h1 {
+            font-size: 3.4rem;
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            background: linear-gradient(145deg, #1F2A48, #2F4172);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 20px;
+        }
+        .hero-desc {
+            font-size: 1.2rem;
+            color: #4a5568;
+            max-width: 540px;
+            margin-bottom: 32px;
+            font-weight: 400;
+        }
+        .hero-stats {
+            display: flex;
+            gap: 36px;
+            margin-top: 20px;
+        }
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+        }
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #1e293b;
+        }
+        .stat-label {
+            font-size: 0.85rem;
+            color: #5f6c84;
+            letter-spacing: 0.3px;
+        }
+        .hero-visual {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border-radius: 42px;
+            padding: 32px 28px;
+            box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255,255,255,0.5);
+            text-align: center;
+            width: 280px;
+        }
+        .glass-card i {
+            font-size: 3.5rem;
+            color: #3a5a9a;
+            margin-bottom: 16px;
+        }
+        .glass-card p {
+            font-weight: 500;
+            color: #1f2a44;
+        }
+        .floating-shape {
+            position: absolute;
+            width: 140px;
+            height: 140px;
+            background: radial-gradient(circle at 30% 30%, rgba(99, 125, 185, 0.2), rgba(55, 85, 145, 0.05));
+            border-radius: 60% 40% 50% 50%;
+            z-index: -1;
+            bottom: -20px;
+            right: -30px;
+        }
+
+        /* 通用部分标题 */
+        .section-title {
+            text-align: center;
+            margin: 64px 0 48px 0;
+        }
+        .section-title h2 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            background: linear-gradient(120deg, #202b44, #2d3e62);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .section-title p {
+            color: #5b6b8c;
+            margin-top: 12px;
+            font-size: 1.05rem;
+        }
+
+        /* 卡片网格 - 特色区域 */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+            margin-bottom: 60px;
+        }
+        .feature-card {
+            background: white;
+            border-radius: 32px;
+            padding: 32px 24px;
+            transition: all 0.25s ease;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.02), 0 2px 4px rgba(0, 0, 0, 0.02);
+            border: 1px solid #eef2f8;
+        }
+        .feature-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 25px 35px -12px rgba(0, 0, 0, 0.1);
+            border-color: #cfdfef;
+        }
+        .feature-icon {
+            width: 56px;
+            height: 56px;
+            background: #eef3fc;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: #2c4b8c;
+            margin-bottom: 24px;
+        }
+        .feature-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .feature-card p {
+            color: #4a5b7a;
+            line-height: 1.5;
+        }
+
+        /* 作品 / 展示区 (无跳转，纯视觉) */
+        .showcase {
+            background: #ffffff;
+            border-radius: 48px;
+            margin: 40px 0 60px;
+            padding: 48px 32px;
+            box-shadow: 0 12px 28px -8px rgba(0, 0, 0, 0.05);
+            border: 1px solid #eef2fa;
+        }
+        .showcase-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        .showcase-header h3 {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 28px;
+            justify-content: center;
+        }
+        .gallery-item {
+            flex: 1 1 260px;
+            background: #fafdff;
+            border-radius: 28px;
+            overflow: hidden;
+            transition: 0.2s;
+            border: 1px solid #e9edf4;
+            cursor: default;
+        }
+        .gallery-item:hover {
+            border-color: #cbdae9;
+            background: #ffffff;
+            box-shadow: 0 12px 22px -12px rgba(0,0,0,0.08);
+        }
+        .gallery-img {
+            height: 180px;
+            background: linear-gradient(145deg, #dce5f2, #c8d3e6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.8rem;
+            color: #385a96;
+        }
+        .gallery-info {
+            padding: 20px 18px;
+        }
+        .gallery-info h4 {
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+        .gallery-info p {
+            font-size: 0.85rem;
+            color: #6b7c9e;
+        }
+
+        /* 引语区块 */
+        .testimonial {
+            background: linear-gradient(115deg, #F6F9FE 0%, #EDF3FA 100%);
+            border-radius: 48px;
+            padding: 56px 40px;
+            margin: 60px 0;
+            text-align: center;
+        }
+        .testimonial i.fa-quote-left {
+            font-size: 2.5rem;
+            color: #8aa4ca;
+            opacity: 0.5;
+            margin-bottom: 16px;
+            display: inline-block;
+        }
+        .testimonial blockquote {
+            font-size: 1.45rem;
+            font-weight: 500;
+            max-width: 780px;
+            margin: 0 auto 24px;
+            color: #1d2a44;
+            line-height: 1.4;
+        }
+        .testimonial-author {
+            font-weight: 600;
+            color: #2f4172;
+        }
+
+        /* 联系区域 — 无实际提交跳转，纯展示 */
+        .contact-area {
+            background: #1E2A44;
+            border-radius: 48px;
+            padding: 52px 48px;
+            margin: 40px 0 70px;
+            color: white;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 32px;
+        }
+        .contact-text h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .contact-text p {
+            opacity: 0.8;
+        }
+        .contact-btn {
+            background: #ffffff20;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255,255,255,0.3);
+            padding: 14px 38px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: default;
+            transition: 0.2s;
+            color: white;
+        }
+        .contact-btn:hover {
+            background: #ffffff30;
+            border-color: #ffffff80;
+        }
+
+        /* 页脚 无跳转链接 */
+        footer {
+            border-top: 1px solid #e2e8f0;
+            padding: 40px 0 48px;
+            margin-top: 20px;
+        }
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 24px;
+        }
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            color: #2c3e66;
+        }
+        .footer-links {
+            display: flex;
+            gap: 28px;
+        }
+        .footer-links span {
+            cursor: default;
+            color: #5a6e8c;
+            font-size: 0.9rem;
+        }
+        .social-icons i {
+            font-size: 1.3rem;
+            margin-left: 20px;
+            color: #6f7d9c;
+            cursor: default;
+            transition: 0.2s;
+        }
+        .social-icons i:hover {
+            color: #2c3e66;
+        }
+        .copyright {
+            text-align: center;
+            margin-top: 32px;
+            font-size: 0.8rem;
+            color: #8695ae;
+        }
+        @media (max-width: 780px) {
+            .container {
+                padding: 0 24px;
             }
-            .shars {
-                margin-left: var(--mar-left);
-                font-family:'Courier New', Courier, monospace;
-                text-decoration: none;
-                color: #000000;
-                margin-top: 1%;
+            .hero-content h1 {
+                font-size: 2.4rem;
             }
-        </style>
-    </head>
-    <body>
-        <audio id="mp3" src="Bad_to_the_bone.mp3" autoplay></audio>
-        <div style="min-width: 14px;height: 50px;background-color: #f9f9f9;margin-top:10px;border-radius: 10px;margin-left: 14xp;box-shadow: 5px 5px 14px gray;">
-            <a href="yes.html" class="shars">听美味😋歌曲🎵</a>
-            <a href="cfdl.html" class="shars">cfdl.html</a>
-            <a href="abc.html" class="shars">abc</a>
-            <a href="a" class="shars">@</a>
-            <img src="bigdan.png" style="width: 10px;height: 10px;" class="shars">
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .contact-area {
+                flex-direction: column;
+                text-align: center;
+            }
+            .section-title h2 {
+                font-size: 1.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- 导航栏 只有视觉元素，无跳转链接 -->
+    <div class="navbar">
+        <div class="logo">
+            <i class="fas fa-feather-alt"></i>
+            <span>星尘·叙事</span>
         </div>
-        <button class="control-btn play-btn" id="playBtn" style="position: fixed;" onclick="music()">
-            <i class="fas fa-play" id="playIcon" style="width: 10px;"></i>
-            <img src="我坏到骨子里😡.png" style="width: 70px;">
-        </button>
+        <div class="nav-links">
+            <span>灵感</span>
+            <span>探索</span>
+            <span>工坊</span>
+            <span>故事</span>
+        </div>
+        <div class="mock-btn">
+            <i class="far fa-user-circle"></i> 空间
+        </div>
+    </div>
 
-        
-        <script>
-        let music = document.getElementById('mp3');
+    <!-- Hero 主要区域 -->
+    <div class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class="fas fa-sparkle" style="font-size: 0.8rem;"></i> 创造·无限可能
+            </div>
+            <h1>将想象力编织成<br>数字星海</h1>
+            <p class="hero-desc">沉浸于极简美学与灵动交互，每处细节皆为灵感而生。这里是纯粹视觉与优雅内容的交汇之地。</p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">200+</span>
+                    <span class="stat-label">独特组件</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">4.98</span>
+                    <span class="stat-label">体验评分</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">∞</span>
+                    <span class="stat-label">创意可能</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="glass-card">
+                <i class="fas fa-cloud-moon"></i>
+                <p>“设计是流动的诗歌”</p>
+                <span style="font-size: 0.75rem; color:#6f7c9a;">今日 · 静观</span>
+            </div>
+            <div class="floating-shape"></div>
+        </div>
+    </div>
 
-        let playBtn = document.getElementById('playBtn');
-        let playIcon = document.getElementById('playIcon');
-        let isPlaying = true;
-        
-        playBtn.addEventListener('click', function() {
-            if (isPlaying) {
-                playIcon.classList.remove('fa-play');
-                playIcon.classList.add('fa-pause');
-                music.play();
-            } else {
-                playIcon.classList.remove('fa-pause');
-                playIcon.classList.add('fa-play');
-                music.pause();
-            }
-            isPlaying = !isPlaying;
+    <!-- 特色卡片区 - 四个核心特质 -->
+    <div class="section-title">
+        <h2>灵感构筑 · 精细内核</h2>
+        <p>纯粹的设计语言，丰富的表达层次</p>
+    </div>
+    <div class="features-grid">
+        <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-gem"></i></div>
+            <h3>极简美学</h3>
+            <p>清晰的信息层级，优雅的留白与和谐的配色体系，带来高级视觉享受。</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-hand-sparkles"></i></div>
+            <h3>沉浸微交互</h3>
+            <p>悬停、过渡与细腻动效，让每个元素都富有生命力且不喧宾夺主。</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-palette"></i></div>
+            <h3>色彩情绪</h3>
+            <p>深海蓝与月石灰交织，营造沉静又充满灵感的现代数字氛围。</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-cloud-sun"></i></div>
+            <h3>响应式布局</h3>
+            <p>完美适配各种设备，从移动端到宽屏，始终呈现绝佳姿态。</p>
+        </div>
+    </div>
+
+    <!-- 作品展示块 - 仅视觉无跳转 -->
+    <div class="showcase">
+        <div class="showcase-header">
+            <h3><i class="fas fa-images"></i> 创意叙事 · 视觉档案</h3>
+            <p>精选概念设计，探索风格边界</p>
+        </div>
+        <div class="gallery">
+            <div class="gallery-item">
+                <div class="gallery-img"><i class="fas fa-mountain-sun"></i></div>
+                <div class="gallery-info">
+                    <h4>远山回声</h4>
+                    <p>自然韵律 · 抽象表达</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-img"><i class="fas fa-water"></i></div>
+                <div class="gallery-info">
+                    <h4>液态梦境</h4>
+                    <p>流动色彩 / 数字艺术</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-img"><i class="fas fa-cube"></i></div>
+                <div class="gallery-info">
+                    <h4>几何秩序</h4>
+                    <p>结构主义与现代构成</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-img"><i class="fas fa-leaf"></i></div>
+                <div class="gallery-info">
+                    <h4>静谧花园</h4>
+                    <p>柔和光影 · 治愈氛围</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 用户感言区 无跳转外部 -->
+    <div class="testimonial">
+        <i class="fas fa-quote-left"></i>
+        <blockquote>
+            每一个细节都像是为情绪量身定制的港湾。没有繁杂的跳转，没有多余的干扰，<br>
+            却让我感受到了设计的深层温度。
+        </blockquote>
+        <div class="testimonial-author">—— 林曦月 · 独立创作者</div>
+    </div>
+
+    <!-- 联系区块 模拟交互但无实际跳转，优雅展示 -->
+    <div class="contact-area">
+        <div class="contact-text">
+            <h3>让想法落笔生花</h3>
+            <p>探索更多创意方向，随时开启你的灵感之旅。</p>
+        </div>
+        <div class="contact-btn">
+            <i class="fas fa-paper-plane"></i> 保持联系
+        </div>
+    </div>
+
+    <!-- 页脚部分 无跳转链接 -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <i class="fas fa-feather-alt"></i> <span>星辰叙事·无界工坊</span>
+            </div>
+            <div class="footer-links">
+                <span>关于思潮</span>
+                <span>设计日记</span>
+                <span>美学实验室</span>
+                <span>文化廊</span>
+            </div>
+            <div class="social-icons">
+                <i class="fab fa-twitter"></i>
+                <i class="fab fa-instagram"></i>
+                <i class="fab fa-dribbble"></i>
+                <i class="fab fa-github"></i>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2025 星尘叙事 | 沉浸式主页体验 · 所有灵感源于想象 ｜ 无外部跳转，仅供视觉美学
+        </div>
+    </footer>
+</div>
+
+<!-- 增加一个简单的动态效果：滚动时标题微弱偏移，提升现代感，无跳转无链接，纯视觉趣味 -->
+<script>
+    (function() {
+        // 纯装饰效果，滚动时让标题产生视差感，没有任何跳转或导航行为
+        const heroTitle = document.querySelector('.hero-content h1');
+        if(heroTitle) {
+            window.addEventListener('scroll', () => {
+                let scrollVal = window.scrollY;
+                let moveY = scrollVal * 0.08;
+                if(moveY < 30) {
+                    heroTitle.style.transform = `translateY(${moveY * 0.3}px)`;
+                } else {
+                    heroTitle.style.transform = `translateY(8px)`;
+                }
+            });
+        }
+        // 简单 hover 卡片信息展示辅助效果，不加任何跳转
+        const cards = document.querySelectorAll('.feature-card, .gallery-item');
+        cards.forEach(card => {
+            card.addEventListener('click', (e) => {
+                // 阻止任何潜在的冒泡，但没有任何链接动作，只是优雅反馈
+                e.stopPropagation();
+                // 轻量级反馈：不进行跳转，仅控制台静默或者无操作，符合需求
+                // 可以添加一个简单的模拟“提示”，但为了干净体验，不做alert
+                // 完全无跳转，符合要求
+            });
         });
-        </script>
-    </body>
+        // 确保所有伪交互元素无 href / 无实际链接
+        // 额外强化：如果任何元素产生意外跳转风险，拦截所有a标签（但本页面没有a标签）
+        const allElements = document.querySelectorAll('[href]');
+        allElements.forEach(el => {
+            if(el.tagName === 'A') {
+                el.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    console.log('无跳转模式，已阻止');
+                });
+            }
+        });
+        // 保证任何情况下都没有页面跳转 (本页面不存在a，但预防)
+        document.querySelectorAll('.mock-btn, .contact-btn, .nav-links span, .footer-links span, .social-icons i').forEach(el => {
+            el.style.cursor = 'default';
+            el.addEventListener('click', (e) => {
+                e.preventDefault();
+                // 完全无跳转
+            });
+        });
+    })();
+</script>
+</body>
 </html>
