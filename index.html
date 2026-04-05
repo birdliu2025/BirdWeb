@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
-    <title>纯白液态宇宙 | 全元素液体玻璃</title>
+    <title>液态玻璃全元素清单 | 每个组件都标注了玻璃位置</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
@@ -16,31 +16,64 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: radial-gradient(ellipse at 30% 20%, #eef2fa 0%, #e0e7f2 100%);
+            background: linear-gradient(145deg, #eef2fa 0%, #e0e7f2 100%);
             min-height: 100vh;
-            color: #1a2635;
+            padding: 20px 0 60px;
         }
 
-        /* 全局容器 */
         .container {
             max-width: 1280px;
             margin: 0 auto;
             padding: 0 28px;
         }
 
-        /* ========= 终极液体玻璃核心类 — 所有元素共用此质感体系 ========= */
+        /* ============================================
+           液态玻璃核心类 - 所有元素统一使用此样式
+           应用位置标注: 导航栏 / 按钮 / 卡片 / 画廊 / 引用块 / 联系区 / 页脚 / 统计卡片 / 徽章
+        ============================================ */
         .liquid-glass {
-            background: rgba(255, 255, 255, 0.55);
+            background: rgba(255, 255, 255, 0.6);
             backdrop-filter: blur(18px) saturate(200%);
             -webkit-backdrop-filter: blur(18px) saturate(200%);
-            border: 1px solid rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.95);
             border-top-color: rgba(255, 255, 255, 1);
-            border-bottom-color: rgba(255, 255, 255, 0.5);
+            border-bottom-color: rgba(255, 255, 255, 0.55);
             box-shadow: 0 15px 35px -12px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.7);
-            transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
         }
 
-        /* 导航栏 — 液体玻璃全覆盖 */
+        /* 页面标题 - 非玻璃，仅文字 */
+        .page-header {
+            text-align: center;
+            margin: 20px 0 30px;
+        }
+        .page-header h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #1f2f50;
+        }
+        .page-header p {
+            color: #4a6085;
+            margin-top: 8px;
+        }
+        .badge-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin: 20px 0 10px;
+        }
+        .glass-tag {
+            background: rgba(255,255,255,0.7);
+            backdrop-filter: blur(8px);
+            padding: 4px 14px;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #2c3e66;
+        }
+
+        /* ===== 1. 导航栏 - 液态玻璃 ===== */
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -49,407 +82,394 @@
             flex-wrap: wrap;
             gap: 20px;
             border-radius: 100px;
-            margin: 28px 0 24px;
-            background: rgba(255, 255, 255, 0.6);
+            margin: 10px 0 30px;
+            /* 液态玻璃样式 */
+            background: rgba(255, 255, 255, 0.65);
             backdrop-filter: blur(20px) saturate(200%);
             border: 1px solid rgba(255, 255, 255, 0.95);
-            box-shadow: 0 12px 28px -10px rgba(0, 0, 0, 0.06), inset 0 1px 1px rgba(255,255,255,0.8);
+            box-shadow: 0 12px 28px -10px rgba(0, 0, 0, 0.06);
+            position: relative;
+        }
+        .navbar::after {
+            content: "🍷 液态玻璃导航栏";
+            position: absolute;
+            bottom: -28px;
+            left: 20px;
+            font-size: 0.7rem;
+            background: rgba(0,0,0,0.5);
+            color: white;
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-weight: 400;
+            pointer-events: none;
+            z-index: 100;
         }
         .logo {
             display: flex;
             align-items: center;
-            gap: 12px;
-            font-size: 1.7rem;
+            gap: 10px;
+            font-size: 1.6rem;
             font-weight: 800;
             background: linear-gradient(135deg, #1f2b48, #2f4570);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
         }
-        .logo i {
-            background: none;
-            color: #3a5a8c;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.05);
-        }
         .nav-links {
             display: flex;
-            gap: 28px;
-            font-weight: 500;
+            gap: 20px;
         }
         .nav-links span {
             cursor: pointer;
             padding: 8px 18px;
             border-radius: 60px;
-            background: rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(8px);
-            transition: 0.25s;
+            background: rgba(255,255,255,0.5);
+            backdrop-filter: blur(4px);
+            transition: 0.2s;
             color: #2c3e66;
-            font-weight: 500;
         }
         .nav-links span:hover {
-            background: rgba(255, 255, 255, 0.85);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 14px rgba(0,0,0,0.04);
+            background: rgba(255,255,255,0.9);
         }
         .mock-btn {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(12px);
-            border-radius: 60px;
+            background: rgba(255,255,255,0.7);
             padding: 8px 28px;
-            font-weight: 600;
+            border-radius: 60px;
             cursor: pointer;
-            border: 1px solid rgba(255,255,255,0.9);
-            color: #2c3e66;
-            transition: 0.2s;
-        }
-        .mock-btn:hover {
-            background: rgba(255, 255, 255, 0.9);
-            transform: scale(1.02);
         }
 
-        /* Hero 区域完全液体玻璃 */
+        /* ===== 2. Hero区域 - 液态玻璃徽章 + 统计卡片 ===== */
         .hero {
             display: flex;
             flex-wrap: wrap;
             align-items: center;
             justify-content: space-between;
-            padding: 50px 0 70px;
-            gap: 48px;
-        }
-        .hero-content {
-            flex: 1.2;
-            min-width: 280px;
+            padding: 30px 0 50px;
+            gap: 40px;
         }
         .hero-badge {
             display: inline-block;
             padding: 8px 24px;
             border-radius: 80px;
-            background: rgba(255, 255, 255, 0.65);
+            margin-bottom: 24px;
+            /* 液态玻璃 */
+            background: rgba(255, 255, 255, 0.7);
             backdrop-filter: blur(12px);
-            margin-bottom: 28px;
-            font-weight: 600;
-            color: #2c3e66;
             border: 0.5px solid rgba(255,255,255,0.9);
+            position: relative;
+        }
+        .hero-badge::after {
+            content: "🍷 玻璃徽章";
+            position: absolute;
+            bottom: -24px;
+            left: 10px;
+            font-size: 0.65rem;
+            background: #1f2f50;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 20px;
+            white-space: nowrap;
         }
         .hero-content h1 {
-            font-size: 3.7rem;
+            font-size: 3.5rem;
             font-weight: 800;
-            line-height: 1.2;
             background: linear-gradient(135deg, #1f2b48, #2f4a7a);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            margin-bottom: 20px;
+            margin: 20px 0 16px;
         }
         .hero-desc {
-            font-size: 1.2rem;
             color: #3a5078;
-            margin-bottom: 32px;
-            max-width: 540px;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
         }
         .hero-stats {
             display: flex;
-            gap: 24px;
+            gap: 20px;
             flex-wrap: wrap;
         }
         .stat-item {
-            background: rgba(255, 255, 245, 0.7);
-            backdrop-filter: blur(12px);
-            border-radius: 48px;
             padding: 10px 28px;
-            border: 0.5px solid rgba(255,255,255,0.8);
+            border-radius: 48px;
+            /* 液态玻璃 */
+            background: rgba(255, 255, 245, 0.75);
+            backdrop-filter: blur(12px);
+            border: 0.5px solid rgba(255,255,255,0.85);
+            position: relative;
+        }
+        .stat-item::after {
+            content: "🍷 玻璃卡片";
+            position: absolute;
+            bottom: -22px;
+            left: 10px;
+            font-size: 0.6rem;
+            background: #2c3e66;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 20px;
+            white-space: nowrap;
         }
         .stat-number {
             font-size: 2rem;
             font-weight: 800;
             color: #1f2f50;
         }
-        .stat-label {
-            font-size: 0.8rem;
-            color: #4a6085;
-        }
 
-        /* 右侧液态按钮区域 (升级流体高光) */
+        /* ===== 3. 液态玻璃按钮 (增强版) ===== */
         .hero-visual {
-            flex: 1;
             display: flex;
             flex-direction: column;
+            gap: 25px;
             align-items: center;
-            gap: 32px;
         }
-        /* 极致液体玻璃按钮 */
         .liquid-btn {
             position: relative;
-            width: 300px;
-            height: 92px;
-            border-radius: 130px;
+            width: 280px;
+            height: 85px;
+            border-radius: 120px;
             background: transparent;
             border: none;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.55rem;
-            font-weight: 700;
-            letter-spacing: 1.2px;
-            transition: transform 0.25s ease, filter 0.3s;
             overflow: hidden;
+        }
+        .liquid-btn::before {
+            content: "🍷 液态玻璃按钮";
+            position: absolute;
+            bottom: -28px;
+            left: 20px;
+            font-size: 0.65rem;
+            background: #1f2f50;
+            color: white;
+            padding: 2px 10px;
+            border-radius: 20px;
+            z-index: 20;
+            white-space: nowrap;
+            pointer-events: none;
         }
         .liquid-btn__base {
             position: absolute;
             inset: 0;
             border-radius: inherit;
-            background: linear-gradient(125deg, rgba(255, 255, 255, 0.85) 0%, rgba(245, 250, 255, 0.98) 100%);
-            backdrop-filter: blur(24px) saturate(220%);
-            border: 1px solid rgba(255, 255, 255, 1);
-            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.1), inset 0 1px 3px rgba(255,255,255,0.9);
-            z-index: 0;
+            background: linear-gradient(125deg, rgba(255,255,255,0.9) 0%, rgba(248,252,255,1) 100%);
+            backdrop-filter: blur(22px) saturate(220%);
+            border: 1px solid white;
+            box-shadow: 0 15px 30px -10px rgba(0,0,0,0.1);
         }
         .liquid-btn__gloss {
             position: absolute;
             inset: 0;
-            border-radius: inherit;
-            background: radial-gradient(ellipse at 25% 30%, rgba(255, 255, 250, 0.95) 0%, rgba(255, 255, 255, 0.2) 70%);
-            opacity: 0.85;
-            z-index: 1;
-            pointer-events: none;
+            background: radial-gradient(ellipse at 30% 30%, rgba(255,255,250,0.9) 0%, rgba(255,255,255,0.2) 70%);
+            opacity: 0.8;
             mix-blend-mode: overlay;
-            filter: blur(2px);
-            animation: glossWave 5s infinite alternate;
-        }
-        .liquid-btn__ripple {
-            position: absolute;
-            inset: 0;
-            border-radius: inherit;
-            background: radial-gradient(circle at 65% 45%, rgba(255, 255, 245, 0.8) 0%, rgba(210, 230, 250, 0.2) 80%);
-            opacity: 0.7;
-            z-index: 1;
-            pointer-events: none;
-            animation: ripplePulse 6s infinite alternate;
-        }
-        .liquid-btn__sheen {
-            position: absolute;
-            top: -30%;
-            left: -40%;
-            width: 200%;
-            height: 180%;
-            background: linear-gradient(115deg, rgba(255,255,255,0) 15%, rgba(255,255,255,0.65) 45%, rgba(255,255,250,0.9) 52%, rgba(255,255,255,0.5) 60%, rgba(255,255,255,0) 85%);
-            transform: rotate(30deg);
-            opacity: 0.55;
-            pointer-events: none;
-            z-index: 2;
-            filter: blur(6px);
-            animation: sheenMove 7s infinite alternate;
+            animation: glossMove 4s infinite alternate;
         }
         .liquid-btn__text {
             position: relative;
             z-index: 5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            font-size: 1.4rem;
+            font-weight: 700;
             background: linear-gradient(135deg, #1F2F50, #2B4170);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            font-weight: 700;
         }
-        @keyframes glossWave {
-            0% { transform: translateX(-4%) translateY(-3%); opacity: 0.8; }
-            100% { transform: translateX(4%) translateY(3%); opacity: 1; }
+        @keyframes glossMove {
+            0% { transform: translateX(-5%) translateY(-3%); opacity: 0.7; }
+            100% { transform: translateX(5%) translateY(3%); opacity: 1; }
         }
-        @keyframes ripplePulse {
-            0% { background: radial-gradient(circle at 30% 40%, rgba(255,255,250,0.8) 0%, rgba(200,220,250,0.2) 80%); transform: scale(1);}
-            100% { background: radial-gradient(circle at 70% 60%, rgba(255,255,245,0.9) 0%, rgba(220,235,255,0.3) 85%); transform: scale(1.02);}
-        }
-        @keyframes sheenMove {
-            0% { transform: rotate(28deg) translateX(-8%) translateY(-6%); opacity: 0.5; }
-            100% { transform: rotate(32deg) translateX(8%) translateY(8%); opacity: 0.75; }
-        }
-        .liquid-btn:hover { transform: translateY(-5px) scale(1.02); }
-        .liquid-btn:active { transform: scale(0.96); transition: transform 0.08s; }
+        .liquid-btn:hover { transform: scale(1.02); transition: 0.2s; }
+        .liquid-btn:active { transform: scale(0.97); }
 
-        /* 所有卡片、板块完全液体玻璃化 */
+        /* ===== 4. 特色卡片区域 - 4个玻璃卡片 ===== */
         .section-title {
             text-align: center;
-            margin: 70px 0 48px;
+            margin: 60px 0 40px;
         }
         .section-title h2 {
-            font-size: 2.6rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #1f2b48, #2f4a7a);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+            font-size: 2.2rem;
+            color: #1f2f50;
         }
-        .section-title p {
-            color: #4a6085;
-            margin-top: 10px;
-            font-weight: 500;
-        }
-
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 32px;
-            margin-bottom: 60px;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
         }
         .feature-card {
-            border-radius: 48px;
-            padding: 34px 26px;
-            background: rgba(255, 255, 255, 0.65);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.9);
-            transition: all 0.3s;
-            cursor: default;
+            border-radius: 44px;
+            padding: 30px 24px;
+            position: relative;
+            /* 液态玻璃 */
+            background: rgba(255, 255, 255, 0.68);
+            backdrop-filter: blur(18px);
+            border: 1px solid rgba(255,255,255,0.95);
+            transition: 0.25s;
+        }
+        .feature-card::after {
+            content: "🍷 玻璃卡片";
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            font-size: 0.6rem;
+            background: #2c3e66;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 20px;
+            opacity: 0.8;
         }
         .feature-card:hover {
-            transform: translateY(-8px);
-            background: rgba(255, 255, 255, 0.82);
-            border-color: #ffffff;
-            box-shadow: 0 28px 40px -18px rgba(0,0,0,0.12);
+            background: rgba(255, 255, 255, 0.85);
+            transform: translateY(-6px);
         }
         .feature-icon {
-            width: 64px;
-            height: 64px;
-            background: rgba(255,255,255,0.75);
-            border-radius: 32px;
+            width: 60px;
+            height: 60px;
+            background: rgba(255,255,255,0.7);
+            border-radius: 30px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
-            color: #2f4a7a;
-            margin-bottom: 24px;
-            backdrop-filter: blur(6px);
-            border: 0.5px solid white;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
         }
-        .feature-card h3 {
-            font-size: 1.55rem;
-            font-weight: 700;
-            margin-bottom: 12px;
-            color: #1f2f50;
-        }
-        .feature-card p {
-            color: #4a6085;
-            line-height: 1.5;
-        }
+        .feature-card h3 { font-size: 1.4rem; margin-bottom: 10px; color: #1f2f50; }
+        .feature-card p { color: #4a6085; }
 
-        /* 展示区全液体玻璃 */
+        /* ===== 5. 画廊展示区 - 每个图块都是玻璃 ===== */
         .showcase {
-            border-radius: 56px;
-            margin: 40px 0 60px;
-            padding: 52px 36px;
+            border-radius: 52px;
+            padding: 40px 30px;
+            margin: 30px 0 50px;
+            position: relative;
             background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(22px);
-            border: 1px solid rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.95);
+        }
+        .showcase::before {
+            content: "🍷 玻璃画廊容器 (整体液态玻璃)";
+            position: absolute;
+            top: -28px;
+            left: 20px;
+            font-size: 0.7rem;
+            background: #1f2f50;
+            color: white;
+            padding: 2px 12px;
+            border-radius: 20px;
         }
         .gallery {
             display: flex;
             flex-wrap: wrap;
-            gap: 30px;
+            gap: 25px;
             justify-content: center;
         }
         .gallery-item {
-            flex: 1 1 260px;
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(14px);
-            border-radius: 44px;
+            flex: 1 1 250px;
+            border-radius: 40px;
             overflow: hidden;
-            transition: 0.25s;
+            position: relative;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(14px);
             border: 1px solid rgba(255,255,255,0.9);
-            cursor: default;
+            transition: 0.2s;
         }
-        .gallery-item:hover {
-            background: rgba(255, 255, 255, 0.88);
-            transform: translateY(-6px);
+        .gallery-item::after {
+            content: "🍷 玻璃图块";
+            position: absolute;
+            bottom: 8px;
+            right: 12px;
+            font-size: 0.55rem;
+            background: #2c3e66cc;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 16px;
         }
+        .gallery-item:hover { transform: translateY(-4px); background: rgba(255,255,255,0.9); }
         .gallery-img {
-            height: 190px;
-            background: rgba(210, 225, 245, 0.5);
+            height: 170px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3.8rem;
+            font-size: 3rem;
             color: #2f4a7a;
+            background: rgba(200,220,250,0.4);
         }
-        .gallery-info {
-            padding: 22px 20px;
-        }
-        .gallery-info h4 {
-            font-weight: 800;
-            margin-bottom: 8px;
-            color: #1e2f4b;
-        }
-        .gallery-info p {
-            font-size: 0.85rem;
-            color: #4f6a92;
-        }
+        .gallery-info { padding: 18px; }
+        .gallery-info h4 { margin-bottom: 6px; color: #1f2f50; }
 
-        /* 引语液体玻璃 */
+        /* ===== 6. 引用区块 - 液态玻璃 ===== */
         .testimonial {
-            border-radius: 60px;
-            padding: 60px 44px;
-            margin: 60px 0;
+            border-radius: 56px;
+            padding: 50px 40px;
+            margin: 50px 0;
             text-align: center;
-            background: rgba(255, 255, 245, 0.68);
+            position: relative;
+            background: rgba(255, 255, 245, 0.7);
             backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(255,255,255,0.95);
         }
-        .testimonial i {
-            font-size: 2.8rem;
-            color: #7a95c0;
-            opacity: 0.6;
+        .testimonial::after {
+            content: "🍷 玻璃引用块";
+            position: absolute;
+            bottom: -24px;
+            left: 30px;
+            font-size: 0.7rem;
+            background: #1f2f50;
+            color: white;
+            padding: 2px 12px;
+            border-radius: 20px;
         }
         .testimonial blockquote {
-            font-size: 1.5rem;
-            font-weight: 500;
-            max-width: 780px;
-            margin: 24px auto;
+            font-size: 1.3rem;
             color: #1f2f4a;
+            max-width: 700px;
+            margin: 0 auto;
         }
 
-        /* 联系区域液体玻璃全覆盖 */
+        /* ===== 7. 联系区域 - 液态玻璃 ===== */
         .contact-area {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(24px);
-            border-radius: 80px;
-            padding: 54px 52px;
-            margin: 40px 0 80px;
-            border: 1px solid rgba(255, 255, 255, 1);
+            border-radius: 70px;
+            padding: 45px 48px;
+            margin: 40px 0 60px;
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
-            gap: 32px;
+            gap: 30px;
+            position: relative;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(24px);
+            border: 1px solid rgba(255,255,255,1);
         }
-        .contact-text h3 {
-            font-size: 2rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #1f2b48, #2f4a7a);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+        .contact-area::after {
+            content: "🍷 玻璃联系卡片";
+            position: absolute;
+            top: -26px;
+            left: 30px;
+            font-size: 0.7rem;
+            background: #1f2f50;
+            color: white;
+            padding: 2px 12px;
+            border-radius: 20px;
         }
-        .contact-text p {
-            color: #4a6085;
-            font-weight: 500;
-        }
+        .contact-text h3 { font-size: 1.8rem; color: #1f2f50; }
         .contact-btn {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-            border-radius: 80px;
-            padding: 14px 44px;
+            background: rgba(255,255,255,0.85);
+            padding: 14px 40px;
+            border-radius: 60px;
             font-weight: 700;
             cursor: pointer;
-            border: 1px solid white;
-            color: #1f2f50;
-            transition: 0.2s;
-        }
-        .contact-btn:hover {
-            background: rgba(255, 255, 255, 1);
-            transform: scale(1.02);
+            backdrop-filter: blur(8px);
         }
 
-        /* 页脚所有元素液体玻璃 */
+        /* ===== 8. 页脚区域 - 全玻璃元素 ===== */
         footer {
-            border-top: 1px solid rgba(200, 210, 230, 0.7);
-            padding: 44px 0 52px;
+            border-top: 1px solid rgba(200,210,230,0.6);
+            padding: 40px 0 30px;
             margin-top: 20px;
         }
         .footer-content {
@@ -457,138 +477,134 @@
             flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
-            gap: 28px;
+            gap: 20px;
         }
         .footer-logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 700;
-            color: #2f4a7a;
-            background: rgba(255,255,240,0.5);
-            padding: 6px 18px;
+            padding: 8px 20px;
             border-radius: 50px;
+            background: rgba(255,255,240,0.6);
             backdrop-filter: blur(10px);
+            position: relative;
+        }
+        .footer-logo::after {
+            content: "🍷 玻璃";
+            font-size: 0.55rem;
+            margin-left: 8px;
+            background: #4a6085;
+            padding: 2px 6px;
+            border-radius: 20px;
+            color: white;
         }
         .footer-links {
             display: flex;
-            gap: 32px;
+            gap: 20px;
         }
         .footer-links span {
-            cursor: default;
-            color: #4a6085;
-            font-weight: 500;
-            background: rgba(255,255,250,0.4);
             padding: 6px 16px;
             border-radius: 40px;
-            backdrop-filter: blur(6px);
+            background: rgba(255,255,250,0.5);
+            backdrop-filter: blur(8px);
+            cursor: default;
         }
         .social-icons i {
-            font-size: 1.4rem;
-            margin-left: 20px;
-            color: #4a6a92;
-            cursor: pointer;
-            transition: 0.2s;
-            background: rgba(255,255,245,0.5);
+            font-size: 1.3rem;
+            margin-left: 15px;
             padding: 8px;
             border-radius: 50%;
-            width: 40px;
-            text-align: center;
-        }
-        .social-icons i:hover {
-            background: rgba(255, 255, 255, 0.9);
-            color: #1f2f50;
-            transform: translateY(-3px);
+            background: rgba(255,255,245,0.6);
+            backdrop-filter: blur(8px);
+            cursor: pointer;
         }
         .copyright {
             text-align: center;
-            margin-top: 38px;
-            font-size: 0.85rem;
-            color: #6e85aa;
-            background: rgba(255,255,250,0.45);
+            margin-top: 35px;
+            padding: 8px 20px;
             width: fit-content;
             margin-left: auto;
             margin-right: auto;
-            padding: 6px 22px;
             border-radius: 40px;
-            backdrop-filter: blur(8px);
+            background: rgba(255,255,250,0.55);
+            backdrop-filter: blur(10px);
+            font-size: 0.8rem;
         }
 
-        /* 水花溅射特效 */
+        /* 水花特效 */
         .liquid-splash {
             position: absolute;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(200, 225, 255, 0.8) 80%);
-            filter: blur(8px);
+            background: radial-gradient(circle, white 0%, rgba(200,225,255,0.9) 80%);
+            filter: blur(7px);
             pointer-events: none;
             z-index: 999;
             transform: scale(0);
-            animation: splashAnim 0.55s cubic-bezier(0.2, 0.9, 0.4, 1) forwards;
+            animation: splashAnim 0.5s ease-out forwards;
         }
         @keyframes splashAnim {
             0% { transform: scale(0); opacity: 0.9; }
-            100% { transform: scale(5); opacity: 0; }
+            100% { transform: scale(4.5); opacity: 0; }
         }
 
         @media (max-width: 780px) {
-            .container { padding: 0 20px; }
-            .hero-content h1 { font-size: 2.6rem; }
-            .liquid-btn { width: 260px; height: 80px; font-size: 1.3rem; }
-            .navbar { flex-direction: column; border-radius: 48px; }
-            .nav-links { justify-content: center; flex-wrap: wrap; }
+            .container { padding: 0 16px; }
+            .hero-content h1 { font-size: 2.2rem; }
+            .liquid-btn { width: 240px; height: 75px; }
+            .navbar::after, .feature-card::after, .stat-item::after { font-size: 0.55rem; }
         }
-
-        /* 滚动条适配液体 */
-        ::-webkit-scrollbar { width: 5px; }
-        ::-webkit-scrollbar-track { background: rgba(200, 210, 230, 0.4); border-radius: 10px; }
-        ::-webkit-scrollbar-thumb { background: rgba(100, 130, 170, 0.5); border-radius: 10px; }
     </style>
 </head>
 <body>
-
 <div class="container">
-    <!-- 导航栏 - 全液体玻璃 -->
-    <div class="navbar">
-        <div class="logo"><i class="fas fa-feather-alt"></i><span>Liquid·Aether</span></div>
-        <div class="nav-links"><span>流明</span><span>涟漪</span><span>极光</span><span>水镜</span></div>
-        <div class="mock-btn"><i class="far fa-user-circle"></i> 液态空间</div>
+    <!-- 页面说明 -->
+    <div class="page-header">
+        <h1>🍷 液态玻璃 · 全元素清单</h1>
+        <p>每个组件都标注了「🍷 玻璃」标识 — 100% 覆盖所有可见元素</p>
+        <div class="badge-list">
+            <span class="glass-tag">✅ 导航栏</span>
+            <span class="glass-tag">✅ 按钮</span>
+            <span class="glass-tag">✅ 卡片</span>
+            <span class="glass-tag">✅ 统计块</span>
+            <span class="glass-tag">✅ 画廊</span>
+            <span class="glass-tag">✅ 引用区</span>
+            <span class="glass-tag">✅ 联系区</span>
+            <span class="glass-tag">✅ 页脚</span>
+        </div>
     </div>
 
-    <!-- Hero 全液态玻璃区域 -->
+    <!-- 1. 导航栏 液态玻璃 -->
+    <div class="navbar">
+        <div class="logo"><i class="fas fa-feather-alt"></i><span>Glass·Liquid</span></div>
+        <div class="nav-links"><span>流明</span><span>涟漪</span><span>极光</span><span>水镜</span></div>
+        <div class="mock-btn"><i class="far fa-user-circle"></i> 空间</div>
+    </div>
+
+    <!-- 2. Hero区域：徽章 + 统计卡片 均为玻璃 -->
     <div class="hero">
         <div class="hero-content">
-            <div class="hero-badge"><i class="fas fa-droplet"></i> 纯白液态 · 全元素玻璃</div>
-            <h1>所有元素皆为<br>液体玻璃</h1>
-            <p class="hero-desc">每一个像素都流淌着光，导航、卡片、按钮、边框——全域沉浸式液态玻璃美学。</p>
+            <div class="hero-badge"><i class="fas fa-droplet"></i> 液态玻璃徽章</div>
+            <h1>每个组件都是<br>液体玻璃</h1>
+            <p class="hero-desc">导航栏 · 按钮 · 卡片 · 画廊 · 引用块 · 联系区 · 页脚 — 所有可见元素全部标注玻璃标识</p>
             <div class="hero-stats">
-                <div class="stat-item"><span class="stat-number">∞</span><div class="stat-label">液态粒子</div></div>
                 <div class="stat-item"><span class="stat-number">100%</span><div class="stat-label">玻璃覆盖</div></div>
-                <div class="stat-item"><span class="stat-number">5.0</span><div class="stat-label">透光率</div></div>
+                <div class="stat-item"><span class="stat-number">12+</span><div class="stat-label">玻璃组件</div></div>
+                <div class="stat-item"><span class="stat-number">∞</span><div class="stat-label">液态质感</div></div>
             </div>
         </div>
         <div class="hero-visual">
-            <button class="liquid-btn" id="liquidBtn1">
+            <button class="liquid-btn" id="btn1">
                 <div class="liquid-btn__base"></div>
                 <div class="liquid-btn__gloss"></div>
-                <div class="liquid-btn__ripple"></div>
-                <div class="liquid-btn__sheen"></div>
-                <span class="liquid-btn__text">✨ 液态启明</span>
+                <div class="liquid-btn__text">✨ 液态玻璃按钮</div>
             </button>
-            <button class="liquid-btn" id="liquidBtn2">
+            <button class="liquid-btn" id="btn2">
                 <div class="liquid-btn__base"></div>
                 <div class="liquid-btn__gloss"></div>
-                <div class="liquid-btn__ripple"></div>
-                <div class="liquid-btn__sheen"></div>
-                <span class="liquid-btn__text">💎 珍珠幻流</span>
+                <div class="liquid-btn__text">💎 珍珠幻流</div>
             </button>
         </div>
     </div>
 
-    <!-- 特色卡片 全部液体玻璃 -->
-    <div class="section-title">
-        <h2>流体构筑 · 全域玻璃</h2>
-        <p>导航栏 · 卡片 · 画廊 · 按钮 全组件统一液态质感</p>
-    </div>
+    <!-- 3. 特色卡片 4个玻璃卡片 -->
+    <div class="section-title"><h2>🍷 玻璃卡片集群</h2></div>
     <div class="features-grid">
         <div class="feature-card"><div class="feature-icon"><i class="fas fa-water"></i></div><h3>超流体模糊</h3><p>动态背景虚化，模拟液态玻璃折射光泽。</p></div>
         <div class="feature-card"><div class="feature-icon"><i class="fas fa-hand-peace"></i></div><h3>灵动悬停</h3><p>悬浮时光晕流动，表面张力反馈。</p></div>
@@ -596,9 +612,8 @@
         <div class="feature-card"><div class="feature-icon"><i class="fas fa-cloud-moon"></i></div><h3>纯白通透</h3><p>乳白玻璃与镜面高光，极致纯净。</p></div>
     </div>
 
-    <!-- 画廊作品 全液体玻璃 -->
+    <!-- 4. 画廊展示区 玻璃图块 -->
     <div class="showcase">
-        <div class="showcase-header"><h3><i class="fas fa-images"></i> 液态叙事馆 · 全玻璃展廊</h3><p>每一个图块都浸润着液体玻璃质感</p></div>
         <div class="gallery">
             <div class="gallery-item"><div class="gallery-img"><i class="fas fa-droplet"></i></div><div class="gallery-info"><h4>水滴交响</h4><p>动态液体模拟</p></div></div>
             <div class="gallery-item"><div class="gallery-img"><i class="fas fa-fan"></i></div><div class="gallery-info"><h4>涟漪扩散</h4><p>交互式光晕</p></div></div>
@@ -607,98 +622,70 @@
         </div>
     </div>
 
-    <!-- 引语液体玻璃 -->
+    <!-- 5. 引用区块 玻璃 -->
     <div class="testimonial">
-        <i class="fas fa-quote-left"></i>
-        <blockquote>从导航到页脚，每一个细节都是液态玻璃。按压按钮时溅射的水花，悬停时流动的高光，真正全域沉浸。</blockquote>
-        <div class="testimonial-author">—— 全液体玻璃体验官</div>
+        <i class="fas fa-quote-left" style="font-size: 2rem; opacity: 0.6; margin-bottom: 16px; display: inline-block;"></i>
+        <blockquote>从导航栏到页脚，每一个元素都标注了「🍷 玻璃」标识，真正实现100%液态玻璃全覆盖。</blockquote>
+        <p style="margin-top: 20px; color: #4a6085;">—— 全玻璃体验官</p>
     </div>
 
-    <!-- 联系区域 液体玻璃 -->
+    <!-- 6. 联系区域 玻璃 -->
     <div class="contact-area">
         <div class="contact-text"><h3>汇入液态星河</h3><p>所有元素皆玻璃，开启你的流体美学之旅。</p></div>
-        <div class="contact-btn"><i class="fas fa-paper-plane"></i> 沉浸体验</div>
+        <div class="contact-btn"><i class="fas fa-paper-plane"></i> 玻璃按钮</div>
     </div>
 
-    <!-- 页脚 全液体玻璃元素 -->
+    <!-- 7. 页脚 玻璃元素 -->
     <footer>
         <div class="footer-content">
-            <div class="footer-logo"><i class="fas fa-feather-alt"></i> <span>纯白液态 · 全玻璃工坊</span></div>
+            <div class="footer-logo"><i class="fas fa-feather-alt"></i> 纯白液态·全玻璃工坊</div>
             <div class="footer-links"><span>流体</span><span>折射</span><span>高光</span><span>波光</span></div>
-            <div class="social-icons"><i class="fab fa-twitter"></i><i class="fab fa-instagram"></i><i class="fab fa-dribbble"></i><i class="fab fa-github"></i></div>
+            <div class="social-icons"><i class="fab fa-twitter"></i><i class="fab fa-instagram"></i><i class="fab fa-github"></i></div>
         </div>
-        <div class="copyright">© 2026 全域液体玻璃美学 | 导航 · 卡片 · 按钮 · 画廊 100% 液态玻璃质感</div>
+        <div class="copyright">© 2026 全域液体玻璃美学 | 导航·按钮·卡片·画廊·引用·联系·页脚 100% 液态玻璃</div>
     </footer>
 </div>
 
 <script>
-    (function() {
-        // 高级水花溅射特效（全域液体按钮）
-        function createLiquidSplash(event, btnElement) {
-            const rect = btnElement.getBoundingClientRect();
-            let clientX, clientY;
-            if (event.touches) {
-                clientX = event.touches[0].clientX;
-                clientY = event.touches[0].clientY;
-            } else {
-                clientX = event.clientX;
-                clientY = event.clientY;
-            }
-            const x = clientX - rect.left;
-            const y = clientY - rect.top;
-            if (x < -30 || x > rect.width + 30 || y < -30 || y > rect.height + 30) return;
-            const relX = Math.min(Math.max(x, 0), rect.width);
-            const relY = Math.min(Math.max(y, 0), rect.height);
-            const splash = document.createElement('div');
-            splash.className = 'liquid-splash';
-            const size = Math.min(rect.width, rect.height) * 0.45;
-            splash.style.width = `${size}px`;
-            splash.style.height = `${size}px`;
-            splash.style.left = `${relX - size/2}px`;
-            splash.style.top = `${relY - size/2}px`;
-            splash.style.position = 'absolute';
-            splash.style.background = `radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(200, 225, 255, 0.9) 80%)`;
-            splash.style.filter = 'blur(8px)';
-            splash.style.pointerEvents = 'none';
-            btnElement.style.overflow = 'visible';
-            btnElement.appendChild(splash);
-            splash.addEventListener('animationend', () => {
-                splash.remove();
-                if(!btnElement.querySelector('.liquid-splash')) btnElement.style.overflow = '';
-            });
-            setTimeout(() => { if(splash.parentNode) splash.remove(); }, 550);
-            if (window.navigator && window.navigator.vibrate) try { window.navigator.vibrate(5); } catch(e) {}
+    // 水花溅射特效 + 控制台输出玻璃组件数量
+    function createSplash(event, btn) {
+        const rect = btn.getBoundingClientRect();
+        let x, y;
+        if (event.touches) {
+            x = event.touches[0].clientX - rect.left;
+            y = event.touches[0].clientY - rect.top;
+        } else {
+            x = event.clientX - rect.left;
+            y = event.clientY - rect.top;
         }
+        if (x < 0 || x > rect.width || y < 0 || y > rect.height) return;
+        const splash = document.createElement('div');
+        splash.className = 'liquid-splash';
+        const size = Math.min(rect.width, rect.height) * 0.4;
+        splash.style.width = `${size}px`;
+        splash.style.height = `${size}px`;
+        splash.style.left = `${x - size/2}px`;
+        splash.style.top = `${y - size/2}px`;
+        splash.style.position = 'absolute';
+        btn.style.overflow = 'visible';
+        btn.appendChild(splash);
+        splash.addEventListener('animationend', () => { splash.remove(); if(!btn.querySelector('.liquid-splash')) btn.style.overflow = ''; });
+        setTimeout(() => { if(splash.parentNode) splash.remove(); }, 500);
+    }
 
-        // 绑定所有 .liquid-btn
-        const btns = document.querySelectorAll('.liquid-btn');
-        btns.forEach(btn => {
-            btn.addEventListener('mousedown', (e) => createLiquidSplash(e, btn));
-            btn.addEventListener('touchstart', (e) => { createLiquidSplash(e, btn); }, { passive: false });
-            btn.addEventListener('click', (e) => {
-                const txt = btn.querySelector('.liquid-btn__text')?.innerText || '液态按钮';
-                console.log(`💎 全域液体玻璃触发「${txt}」水银涟漪 ✨`);
-            });
-        });
+    const btns = document.querySelectorAll('.liquid-btn');
+    btns.forEach(btn => {
+        btn.addEventListener('mousedown', (e) => createSplash(e, btn));
+        btn.addEventListener('touchstart', (e) => createSplash(e, btn));
+        btn.addEventListener('click', () => console.log('🍷 液态玻璃按钮被触发'));
+    });
 
-        // 所有模拟交互组件无跳转
-        document.querySelectorAll('.mock-btn, .contact-btn, .nav-links span, .social-icons i, .footer-links span').forEach(el => {
-            if(el.style.cursor !== 'pointer') el.style.cursor = 'pointer';
-            el.addEventListener('click', (e) => {
-                e.preventDefault();
-                console.log('✨ 纯白液体玻璃界面交互（全域沉浸）');
-            });
-        });
-
-        // 视差微动
-        const heroTitle = document.querySelector('.hero-content h1');
-        if(heroTitle) {
-            window.addEventListener('scroll', () => {
-                let sv = window.scrollY;
-                heroTitle.style.transform = `translateY(${Math.min(sv * 0.06, 14)}px)`;
-            });
-        }
-    })();
+    // 统计所有玻璃组件并输出
+    const glassComponents = document.querySelectorAll('.navbar, .hero-badge, .stat-item, .feature-card, .gallery-item, .testimonial, .contact-area, .footer-logo, .footer-links span, .copyright, .mock-btn, .nav-links span, .contact-btn');
+    console.log(`✅ 全站液态玻璃组件数量: ${glassComponents.length} 个 (导航/按钮/卡片/画廊/引用/联系/页脚全部覆盖)`);
+    document.querySelectorAll('.mock-btn, .contact-btn, .nav-links span, .social-icons i, .footer-links span').forEach(el => {
+        el.addEventListener('click', (e) => e.preventDefault());
+    });
 </script>
 </body>
 </html>
