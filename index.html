@@ -1,744 +1,582 @@
-以下是您要求的全站采用液态玻璃风格的HTML代码。它将导航、卡片、画廊等所有主要元素都替换为统一的液态玻璃质感，营造出沉浸式的视觉体验。
-
-```html
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
-    <title>液态宇宙 | 全站液态玻璃美学</title>
-    <!-- 引入 Google Fonts 提升字体质感 -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
-    <!-- Font Awesome 6 (免费图标库) 增加视觉细节 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>液态玻璃按钮 - iOS风格增强版</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            user-select: none;
             -webkit-tap-highlight-color: transparent;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background: radial-gradient(ellipse at 30% 20%, #0f1725, #03060c);
-            color: #eef3ff;
-            line-height: 1.5;
-            scroll-behavior: smooth;
             min-height: 100vh;
-        }
-
-        /* 自定义滚动条 - 液态半透 */
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.08);
-            border-radius: 12px;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: rgba(150, 180, 220, 0.5);
-            border-radius: 12px;
-            backdrop-filter: blur(4px);
-        }
-
-        /* 容器约束 */
-        .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 32px;
-        }
-
-        /* ========= 全站通用液态玻璃核心 (所有组件共用此套体系) ========= */
-        .liquid-surface {
-            background: rgba(30, 45, 70, 0.28);
-            backdrop-filter: blur(14px) saturate(180%);
-            -webkit-backdrop-filter: blur(14px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.28);
-            border-top-color: rgba(255, 255, 255, 0.45);
-            border-bottom-color: rgba(255, 255, 255, 0.12);
-            box-shadow: 0 12px 28px -12px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
-            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-        }
-        
-        /* 导航栏液态玻璃 */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 18px 28px;
-            flex-wrap: wrap;
-            gap: 20px;
-            border-radius: 80px;
-            margin: 24px 0 20px;
-            background: rgba(20, 35, 55, 0.35);
-            backdrop-filter: blur(16px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-        }
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 1.7rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #FFFFFF, #B8D0FF);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            letter-spacing: -0.01em;
-        }
-        .logo i {
-            background: none;
-            color: #bbd4ff;
-            text-shadow: 0 0 8px rgba(100, 160, 255, 0.5);
-        }
-        .nav-links {
-            display: flex;
-            gap: 36px;
-            font-weight: 500;
-        }
-        .nav-links span {
-            cursor: pointer;
-            transition: all 0.2s;
-            font-size: 1rem;
-            color: rgba(240, 248, 255, 0.85);
-            letter-spacing: 0.3px;
-            backdrop-filter: blur(4px);
-            padding: 6px 12px;
-            border-radius: 40px;
-        }
-        .nav-links span:hover {
-            color: white;
-            background: rgba(255, 255, 255, 0.15);
-            text-shadow: 0 0 5px rgba(255,255,200,0.6);
-        }
-        .mock-btn {
-            background: rgba(255, 255, 255, 0.12);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.35);
-            padding: 8px 24px;
-            border-radius: 60px;
-            font-weight: 600;
-            transition: 0.25s;
-            cursor: pointer;
-            color: #eef3ff;
-        }
-        .mock-btn:hover {
-            background: rgba(255, 255, 255, 0.25);
-            border-color: rgba(255, 255, 255, 0.7);
-            transform: scale(1.02);
-        }
-
-        /* Hero区域 + 液态玻璃增强按钮 */
-        .hero {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-between;
-            padding: 48px 0 64px 0;
-            gap: 48px;
-        }
-        .hero-content {
-            flex: 1.2;
-            min-width: 280px;
-        }
-        .hero-badge {
-            background: rgba(70, 110, 150, 0.4);
-            backdrop-filter: blur(8px);
-            display: inline-block;
-            padding: 6px 18px;
-            border-radius: 60px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: #eef5ff;
-            margin-bottom: 24px;
-            border: 0.5px solid rgba(255,255,255,0.3);
-        }
-        .hero-content h1 {
-            font-size: 3.6rem;
-            font-weight: 800;
-            line-height: 1.2;
-            letter-spacing: -0.02em;
-            background: linear-gradient(135deg, #FFFFFF, #B4D0FF, #7CA5E0);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            margin-bottom: 20px;
-        }
-        .hero-desc {
-            font-size: 1.2rem;
-            color: #cbdff5;
-            max-width: 540px;
-            margin-bottom: 32px;
-            font-weight: 400;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
-        }
-        .hero-stats {
-            display: flex;
-            gap: 36px;
-            margin-top: 20px;
-        }
-        .stat-item {
-            background: rgba(255,255,240,0.08);
-            backdrop-filter: blur(8px);
-            border-radius: 32px;
-            padding: 8px 20px;
-            border: 0.5px solid rgba(255,255,255,0.2);
-        }
-        .stat-number {
-            font-size: 2rem;
-            font-weight: 800;
-            color: #FFFFFF;
-        }
-        .stat-label {
-            font-size: 0.8rem;
-            color: #bbd6ff;
-        }
-
-        /* 右侧液态按钮集群 (核心液态玻璃按钮升级版) */
-        .hero-visual {
-            flex: 1;
+            background: radial-gradient(ellipse at 40% 30%, #101a24, #03060a);
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-direction: column;
-            gap: 28px;
+            font-family: system-ui, -apple-system, 'SF Pro Text', 'Helvetica Neue', 'Segoe UI', BlinkMacSystemFont, sans-serif;
+            padding: 1.5rem;
         }
-        /* 终极液态玻璃按钮组件 (超流体高光) */
+
+        /* 主容器 - 更优雅的排列 */
+        .glass-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 2.5rem;
+            perspective: 800px;
+        }
+
+        /* ==============================================
+           液态玻璃按钮核心设计 (重新构思更惊艳的液体质感)
+           ============================================== */
         .liquid-btn {
             position: relative;
             width: 280px;
             height: 84px;
-            border-radius: 120px;
+            border-radius: 100px;
             background: transparent;
             border: none;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.45rem;
-            font-weight: 620;
-            letter-spacing: 1.2px;
+            font-size: 1.55rem;
+            font-weight: 590;
+            letter-spacing: 0.8px;
             transition: transform 0.25s cubic-bezier(0.2, 0.95, 0.4, 1.05), filter 0.3s;
             will-change: transform;
             overflow: hidden;
+            /* 保证内部子元素圆角裁剪 */
         }
+
+        /* 玻璃基底层 - 增强的液态玻璃模糊 + 内高光 + 外阴影 */
         .liquid-btn__base {
             position: absolute;
             inset: 0;
             border-radius: inherit;
-            background: linear-gradient(135deg, rgba(110, 150, 200, 0.32) 0%, rgba(60, 95, 140, 0.45) 100%);
-            backdrop-filter: blur(18px) saturate(200%);
-            border: 1px solid rgba(255, 255, 255, 0.55);
-            border-top-color: rgba(255, 255, 255, 0.8);
-            box-shadow: 0 18px 32px -12px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.6);
+            background: linear-gradient(135deg, rgba(140, 170, 210, 0.25) 0%, rgba(80, 110, 150, 0.35) 100%);
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.45);
+            border-top-color: rgba(255, 255, 255, 0.7);
+            border-bottom-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 15px 30px -8px rgba(0, 0, 0, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.5), inset 0 -2px 0 rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease;
             z-index: 0;
         }
+
+        /* 液态高光层1 - 模拟液体表面流动的高光 (有机形态) */
         .liquid-btn__gloss {
             position: absolute;
             inset: 0;
             border-radius: inherit;
-            background: radial-gradient(ellipse at 25% 30%, rgba(255, 255, 250, 0.55) 0%, rgba(255, 255, 255, 0.05) 70%);
-            opacity: 0.75;
+            background: radial-gradient(ellipse at 30% 25%, rgba(255, 255, 245, 0.5) 0%, rgba(255, 255, 255, 0.08) 60%);
+            opacity: 0.7;
             z-index: 1;
             pointer-events: none;
             mix-blend-mode: overlay;
-            filter: blur(2px);
-            animation: floatGloss 6s infinite ease-in-out;
+            transition: all 0.4s;
+            transform: translateX(-2%) translateY(-3%);
+            filter: blur(3px);
         }
+
+        /* 液态高光层2 - 动态流体波纹 (类似水滴扩散感) */
         .liquid-btn__ripple {
             position: absolute;
             inset: 0;
             border-radius: inherit;
-            background: radial-gradient(circle at 70% 45%, rgba(210, 235, 255, 0.5) 0%, rgba(100, 150, 210, 0) 80%);
-            opacity: 0.6;
+            background: radial-gradient(circle at 70% 55%, rgba(200, 225, 255, 0.4) 0%, rgba(100, 150, 210, 0) 75%);
+            opacity: 0.55;
             z-index: 1;
             pointer-events: none;
             mix-blend-mode: soft-light;
-            transition: transform 0.3s;
+            transition: transform 0.5s cubic-bezier(0.2, 0.9, 0.3, 1.1);
         }
+
+        /* 高级液态纹理层: 增加流动的斜向光线，更像玻璃内部折射 */
         .liquid-btn__sheen {
             position: absolute;
-            top: -25%;
+            top: -20%;
             left: -30%;
-            width: 180%;
-            height: 180%;
-            background: linear-gradient(115deg, rgba(255,255,255,0) 20%, rgba(255,255,255,0.35) 45%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0.3) 55%, rgba(255,255,255,0) 80%);
-            transform: rotate(28deg);
-            opacity: 0.4;
+            width: 160%;
+            height: 160%;
+            background: linear-gradient(115deg, 
+                        rgba(255, 255, 255, 0) 20%,
+                        rgba(255, 255, 255, 0.3) 45%,
+                        rgba(255, 255, 255, 0.6) 50%,
+                        rgba(255, 255, 255, 0.3) 55%,
+                        rgba(255, 255, 255, 0) 80%);
+            transform: rotate(25deg);
+            opacity: 0.35;
             pointer-events: none;
             z-index: 2;
-            filter: blur(6px);
-            animation: sheenFlow 8s infinite alternate;
+            filter: blur(5px);
+            transition: transform 0.6s;
         }
+
+        /* 按钮文字层 (精致渐变文字 + 轻微阴影) */
         .liquid-btn__text {
             position: relative;
             z-index: 5;
-            background: linear-gradient(135deg, #FFFFFF, #EAF3FF);
+            background: linear-gradient(135deg, #FFFFFF 30%, #EAF3FF 80%);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            font-weight: 700;
-        }
-        @keyframes floatGloss {
-            0% { transform: translateX(-2%) translateY(-2%) rotate(0deg); opacity: 0.7; }
-            50% { transform: translateX(3%) translateY(2%) rotate(1deg); opacity: 0.9; }
-            100% { transform: translateX(-2%) translateY(-2%) rotate(0deg); opacity: 0.7; }
-        }
-        @keyframes sheenFlow {
-            0% { transform: rotate(28deg) translateX(-5%) translateY(-8%); opacity: 0.35; }
-            100% { transform: rotate(28deg) translateX(6%) translateY(8%); opacity: 0.6; }
-        }
-        .liquid-btn:hover {
-            transform: translateY(-4px) scale(1.02);
-        }
-        .liquid-btn:hover .liquid-btn__base {
-            background: linear-gradient(135deg, rgba(130, 170, 220, 0.42) 0%, rgba(80, 115, 160, 0.55) 100%);
-            backdrop-filter: blur(22px) saturate(220%);
-            border-color: rgba(255, 255, 255, 0.75);
-            box-shadow: 0 24px 40px -12px rgba(0, 0, 0, 0.45);
-        }
-        .liquid-btn:active {
-            transform: scale(0.96);
-            transition: transform 0.08s;
-        }
-        .liquid-btn:active .liquid-btn__base {
-            background: linear-gradient(135deg, rgba(90, 120, 170, 0.55) 0%, rgba(60, 85, 125, 0.65) 100%);
-            backdrop-filter: blur(14px);
-            box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.3);
-        }
-        /* 风格变体 */
-        .liquid-btn--violet .liquid-btn__base {
-            background: linear-gradient(135deg, rgba(160, 120, 210, 0.35) 0%, rgba(100, 70, 155, 0.5) 100%);
-        }
-        .liquid-btn--violet .liquid-btn__text {
-            background: linear-gradient(135deg, #F0E6FF, #DBC8FF);
-            -webkit-background-clip: text;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            font-weight: 600;
+            transition: all 0.2s;
+            letter-spacing: 1px;
         }
 
-        /* 水滴溅射特效 */
+        /* 额外微光边缘增强液态玻璃感 */
+        .liquid-btn__edge {
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.2);
+            pointer-events: none;
+            z-index: 3;
+            opacity: 0.6;
+        }
+
+        /* 动态漂浮动画: 让高光缓慢流动 (模拟液体表面波动) */
+        @keyframes floatLiquid {
+            0% {
+                transform: translateX(-3%) translateY(-2%) rotate(0deg);
+            }
+            50% {
+                transform: translateX(3%) translateY(2%) rotate(1deg);
+            }
+            100% {
+                transform: translateX(-3%) translateY(-2%) rotate(0deg);
+            }
+        }
+        
+        @keyframes sheenSlide {
+            0% {
+                transform: rotate(25deg) translateX(-5%) translateY(-10%);
+            }
+            100% {
+                transform: rotate(25deg) translateX(5%) translateY(10%);
+            }
+        }
+
+        .liquid-btn__gloss {
+            animation: floatLiquid 7s infinite ease-in-out;
+        }
+        
+        .liquid-btn__sheen {
+            animation: sheenSlide 9s infinite alternate ease-in-out;
+        }
+
+        /* 悬停交互提升液态反应 */
+        @media (hover: hover) {
+            .liquid-btn:hover {
+                transform: translateY(-4px) scale(1.02);
+                filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.25));
+            }
+            .liquid-btn:hover .liquid-btn__base {
+                background: linear-gradient(135deg, rgba(160, 190, 230, 0.32) 0%, rgba(100, 130, 180, 0.4) 100%);
+                backdrop-filter: blur(20px) saturate(200%);
+                border-color: rgba(255, 255, 255, 0.65);
+                box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.35), inset 0 1px 2px rgba(255, 255, 255, 0.7);
+            }
+            .liquid-btn:hover .liquid-btn__gloss {
+                opacity: 0.9;
+                filter: blur(2px);
+            }
+            .liquid-btn:hover .liquid-btn__ripple {
+                opacity: 0.8;
+                background: radial-gradient(circle at 65% 45%, rgba(220, 240, 255, 0.55) 0%, rgba(140, 190, 250, 0.1) 85%);
+            }
+            .liquid-btn:hover .liquid-btn__text {
+                background: linear-gradient(135deg, #FFFFFF, #FFFFFF);
+                -webkit-background-clip: text;
+                background-clip: text;
+                text-shadow: 0 0 6px rgba(255, 255, 255, 0.5);
+            }
+        }
+
+        /* 按压状态 - 液态受压力形变 + 内陷光感 */
+        .liquid-btn:active {
+            transform: scale(0.96);
+            transition: transform 0.08s cubic-bezier(0.2, 0.9, 0.5, 1);
+        }
+        .liquid-btn:active .liquid-btn__base {
+            background: linear-gradient(135deg, rgba(100, 130, 170, 0.45) 0%, rgba(70, 95, 130, 0.5) 100%);
+            backdrop-filter: blur(12px) saturate(170%);
+            box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.25), 0 5px 12px rgba(0, 0, 0, 0.2);
+            border-top-color: rgba(255, 255, 255, 0.4);
+        }
+        .liquid-btn:active .liquid-btn__gloss {
+            opacity: 0.5;
+            transform: translateX(2%) translateY(3%) scale(0.98);
+            filter: blur(5px);
+        }
+        .liquid-btn:active .liquid-btn__ripple {
+            opacity: 0.4;
+            transform: scale(0.97);
+        }
+
+        /* 不同风格变体 - 紫罗兰液态玻璃 */
+        .liquid-btn--violet .liquid-btn__base {
+            background: linear-gradient(135deg, rgba(175, 140, 210, 0.28) 0%, rgba(120, 85, 165, 0.38) 100%);
+            border-color: rgba(220, 190, 255, 0.45);
+        }
+        .liquid-btn--violet .liquid-btn__text {
+            background: linear-gradient(135deg, #F3EFFF, #E0CDFF);
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+        @media (hover: hover) {
+            .liquid-btn--violet:hover .liquid-btn__base {
+                background: linear-gradient(135deg, rgba(190, 155, 230, 0.35) 0%, rgba(135, 100, 185, 0.45) 100%);
+                border-color: rgba(235, 210, 255, 0.65);
+            }
+        }
+
+        /* 风格 - 深海翡翠色液态玻璃 */
+        .liquid-btn--emerald .liquid-btn__base {
+            background: linear-gradient(135deg, rgba(80, 170, 150, 0.28) 0%, rgba(40, 120, 110, 0.38) 100%);
+            border-color: rgba(130, 220, 200, 0.45);
+        }
+        .liquid-btn--emerald .liquid-btn__text {
+            background: linear-gradient(135deg, #D4FFEF, #A0F0DA);
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+
+        /* 高级点击水波纹效果（液态溅射感）*/
         .liquid-splash {
             position: absolute;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(255, 255, 245, 0.95) 0%, rgba(160, 200, 250, 0.5) 80%);
-            filter: blur(7px);
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(210, 230, 255, 0.3) 80%);
+            filter: blur(6px);
             pointer-events: none;
-            z-index: 30;
+            z-index: 20;
             transform: scale(0);
-            animation: splashBurst 0.55s cubic-bezier(0.2, 0.9, 0.4, 1) forwards;
-        }
-        @keyframes splashBurst {
-            0% { transform: scale(0); opacity: 0.9; }
-            50% { opacity: 0.7; }
-            100% { transform: scale(5); opacity: 0; }
+            opacity: 0.9;
+            animation: splashAnim 0.6s cubic-bezier(0.2, 0.9, 0.4, 1) forwards;
         }
 
-        /* 所有卡片、展示区全面液态玻璃化 */
-        .section-title {
-            text-align: center;
-            margin: 64px 0 48px 0;
-        }
-        .section-title h2 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #FFFFFF, #BBD5FF);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        .section-title p {
-            color: #b8cef0;
-            margin-top: 10px;
+        @keyframes splashAnim {
+            0% {
+                transform: scale(0);
+                opacity: 0.9;
+            }
+            40% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: scale(4.5);
+                opacity: 0;
+            }
         }
 
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 32px;
-            margin-bottom: 60px;
-        }
-        .feature-card {
-            border-radius: 36px;
-            padding: 32px 24px;
-            background: rgba(25, 40, 60, 0.35);
-            backdrop-filter: blur(16px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            transition: all 0.3s ease;
-            cursor: default;
-        }
-        .feature-card:hover {
-            transform: translateY(-8px);
-            background: rgba(40, 65, 95, 0.45);
-            border-color: rgba(255, 255, 255, 0.45);
-            box-shadow: 0 20px 32px -12px rgba(0, 0, 0, 0.35);
-        }
-        .feature-icon {
-            width: 56px;
-            height: 56px;
-            background: rgba(255,255,245,0.12);
-            border-radius: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            color: #cce6ff;
-            margin-bottom: 24px;
-            backdrop-filter: blur(4px);
-            border: 0.5px solid rgba(255,255,255,0.3);
-        }
-        .feature-card h3 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 12px;
-            color: #ffffff;
-        }
-        .feature-card p {
-            color: #cddef5;
+        /* 额外增加光晕脉冲 (模拟液态压力波) */
+        .liquid-pulse {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 240, 180, 0.7) 0%, rgba(255, 200, 100, 0) 80%);
+            filter: blur(8px);
+            pointer-events: none;
+            z-index: 19;
+            animation: pulseAnim 0.4s ease-out forwards;
         }
 
-        /* 作品展示区 全液态 */
-        .showcase {
-            border-radius: 48px;
-            margin: 40px 0 60px;
-            padding: 48px 32px;
-            background: rgba(20, 35, 55, 0.4);
-            backdrop-filter: blur(18px);
-            border: 1px solid rgba(255, 255, 255, 0.25);
-        }
-        .gallery {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 28px;
-            justify-content: center;
-        }
-        .gallery-item {
-            flex: 1 1 260px;
-            background: rgba(35, 55, 80, 0.4);
-            backdrop-filter: blur(12px);
-            border-radius: 32px;
-            overflow: hidden;
-            transition: 0.25s;
-            border: 1px solid rgba(255,255,240,0.2);
-            cursor: default;
-        }
-        .gallery-item:hover {
-            background: rgba(55, 80, 115, 0.55);
-            border-color: rgba(255,255,255,0.5);
-            transform: translateY(-5px);
-        }
-        .gallery-img {
-            height: 180px;
-            background: rgba(80, 110, 150, 0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3.5rem;
-            color: #d9edff;
-        }
-        .gallery-info {
-            padding: 20px 18px;
-        }
-        .gallery-info h4 {
-            font-weight: 700;
-            margin-bottom: 6px;
-            color: white;
-        }
-        .gallery-info p {
-            font-size: 0.85rem;
-            color: #c7dcf5;
+        @keyframes pulseAnim {
+            0% {
+                transform: scale(0.2);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(2.2);
+                opacity: 0;
+            }
         }
 
-        /* 引语区 液态玻璃增强 */
-        .testimonial {
-            border-radius: 48px;
-            padding: 56px 40px;
-            margin: 60px 0;
-            text-align: center;
-            background: rgba(30, 50, 75, 0.4);
-            backdrop-filter: blur(18px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-        .testimonial i.fa-quote-left {
-            font-size: 2.5rem;
-            color: #b4d0ff;
-            opacity: 0.7;
-        }
-        .testimonial blockquote {
-            font-size: 1.45rem;
-            font-weight: 500;
-            max-width: 780px;
-            margin: 20px auto 24px;
-            color: #eef5ff;
+        /* 微响应式 */
+        @media (max-width: 680px) {
+            .liquid-btn {
+                width: 240px;
+                height: 74px;
+                font-size: 1.35rem;
+            }
+            .glass-container {
+                gap: 1.8rem;
+            }
         }
 
-        /* 联系区域 液态玻璃 */
-        .contact-area {
-            background: rgba(25, 45, 70, 0.45);
+        /* 全局底部说明 */
+        .info-badge {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(20, 30, 45, 0.6);
             backdrop-filter: blur(20px);
-            border-radius: 60px;
-            padding: 52px 48px;
-            margin: 40px 0 70px;
-            border: 1px solid rgba(255,255,240,0.35);
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            gap: 32px;
-        }
-        .contact-text h3 {
-            font-size: 1.9rem;
-            font-weight: 700;
-            background: linear-gradient(135deg,#FFFFFF,#b8d6ff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        .contact-text p {
-            opacity: 0.85;
-            color: #d0e5ff;
-        }
-        .contact-btn {
-            background: rgba(255,255,250,0.12);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255,255,255,0.45);
-            padding: 14px 38px;
-            border-radius: 60px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.2s;
-            color: white;
-        }
-        .contact-btn:hover {
-            background: rgba(255,255,255,0.25);
-            border-color: #ffffffaa;
-            transform: scale(1.02);
-        }
-
-        /* 页脚液态玻璃 */
-        footer {
-            border-top: 1px solid rgba(255,255,240,0.2);
-            padding: 40px 0 48px;
-            margin-top: 20px;
-        }
-        .footer-content {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            gap: 24px;
-        }
-        .footer-logo {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 600;
-            color: #e0edff;
-        }
-        .footer-links {
-            display: flex;
-            gap: 28px;
-        }
-        .footer-links span {
-            cursor: default;
-            color: #bed6ff;
-            transition: 0.2s;
-        }
-        .social-icons i {
-            font-size: 1.3rem;
-            margin-left: 20px;
-            color: #bbd4ff;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .social-icons i:hover {
-            color: white;
-            text-shadow: 0 0 8px #fff;
-        }
-        .copyright {
-            text-align: center;
-            margin-top: 32px;
+            border-radius: 40px;
+            padding: 6px 18px;
             font-size: 0.8rem;
-            color: #b0c8ec;
-        }
-        @media (max-width: 780px) {
-            .container { padding: 0 20px; }
-            .hero-content h1 { font-size: 2.5rem; }
-            .liquid-btn { width: 240px; height: 74px; font-size: 1.2rem; }
-            .navbar { flex-direction: column; align-items: stretch; border-radius: 48px; }
-            .nav-links { justify-content: center; }
+            color: #cdedff;
+            font-family: monospace;
+            letter-spacing: 1px;
+            border: 0.5px solid rgba(255, 255, 255, 0.25);
+            pointer-events: none;
+            z-index: 100;
+            white-space: nowrap;
         }
 
-        /* 额外小点缀 所有元素统一玻璃质感 */
-        .hero-badge, .stat-item, .feature-card, .gallery-item, .contact-area, .testimonial {
-            transition: all 0.25s ease;
+        /* 降级处理 backdrop-filter 不支持 */
+        @supports not (backdrop-filter: blur(10px)) {
+            .liquid-btn__base {
+                background: rgba(70, 100, 140, 0.75) !important;
+                backdrop-filter: none !important;
+            }
+            .liquid-btn--violet .liquid-btn__base {
+                background: rgba(115, 85, 150, 0.8) !important;
+            }
+            .liquid-btn--emerald .liquid-btn__base {
+                background: rgba(55, 125, 110, 0.8) !important;
+            }
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <!-- 全液态玻璃导航栏 -->
-    <div class="navbar">
-        <div class="logo">
-            <i class="fas fa-feather-alt"></i>
-            <span>液态·星尘</span>
-        </div>
-        <div class="nav-links">
-            <span>流萤</span>
-            <span>水镜</span>
-            <span>潮汐</span>
-            <span>极光</span>
-        </div>
-        <div class="mock-btn">
-            <i class="far fa-user-circle"></i> 液态空间
-        </div>
-    </div>
+<div class="glass-container">
+    <!-- 按钮 1: 经典蓝调液态玻璃 -->
+    <button class="liquid-btn" id="btnPrimary">
+        <div class="liquid-btn__base"></div>
+        <div class="liquid-btn__gloss"></div>
+        <div class="liquid-btn__ripple"></div>
+        <div class="liquid-btn__sheen"></div>
+        <div class="liquid-btn__edge"></div>
+        <span class="liquid-btn__text">液态玻璃</span>
+    </button>
 
-    <!-- Hero区域 液态融合 -->
-    <div class="hero">
-        <div class="hero-content">
-            <div class="hero-badge">
-                <i class="fas fa-droplet"></i> 全液态 · 超流体美学
-            </div>
-            <h1>沉浸于液态玻璃<br>数字幻境</h1>
-            <p class="hero-desc">每一处界面都流淌着光与影，动态模糊与高光交织，打造次世代视觉体验。</p>
-            <div class="hero-stats">
-                <div class="stat-item"><span class="stat-number">∞</span><div class="stat-label">液态粒子</div></div>
-                <div class="stat-item"><span class="stat-number">4.99</span><div class="stat-label">灵动指数</div></div>
-                <div class="stat-item"><span class="stat-number">24/7</span><div class="stat-label">流光溢彩</div></div>
-            </div>
-        </div>
-        <div class="hero-visual">
-            <button class="liquid-btn" id="liquidMainBtn">
-                <div class="liquid-btn__base"></div>
-                <div class="liquid-btn__gloss"></div>
-                <div class="liquid-btn__ripple"></div>
-                <div class="liquid-btn__sheen"></div>
-                <span class="liquid-btn__text">✨ 液态启程</span>
-            </button>
-            <button class="liquid-btn liquid-btn--violet" id="liquidSecondBtn">
-                <div class="liquid-btn__base"></div>
-                <div class="liquid-btn__gloss"></div>
-                <div class="liquid-btn__ripple"></div>
-                <div class="liquid-btn__sheen"></div>
-                <span class="liquid-btn__text">💧 幻彩涟漪</span>
-            </button>
-        </div>
-    </div>
+    <!-- 按钮 2: 紫罗兰流光 -->
+    <button class="liquid-btn liquid-btn--violet" id="btnViolet">
+        <div class="liquid-btn__base"></div>
+        <div class="liquid-btn__gloss"></div>
+        <div class="liquid-btn__ripple"></div>
+        <div class="liquid-btn__sheen"></div>
+        <div class="liquid-btn__edge"></div>
+        <span class="liquid-btn__text">紫晶水漾</span>
+    </button>
 
-    <!-- 特色卡片 全部液态玻璃化 -->
-    <div class="section-title">
-        <h2>流体构筑 · 灵感内核</h2>
-        <p>透明层次与动态微光，每张卡片都是液态艺术品</p>
-    </div>
-    <div class="features-grid">
-        <div class="feature-card"><div class="feature-icon"><i class="fas fa-water"></i></div><h3>超流体模糊</h3><p>动态背景虚化，模拟液态玻璃折射光泽。</p></div>
-        <div class="feature-card"><div class="feature-icon"><i class="fas fa-hand-peace"></i></div><h3>灵动悬停</h3><p>悬浮时高光流动，液态表面张力反馈。</p></div>
-        <div class="feature-card"><div class="feature-icon"><i class="fas fa-gem"></i></div><h3>折射高光</h3><p>多层渐变模拟光线在液体中的折射。</p></div>
-        <div class="feature-card"><div class="feature-icon"><i class="fas fa-cloud-moon"></i></div><h3>深色液态主题</h3><p>深邃背景衬托玻璃通透质感，沉浸无界。</p></div>
-    </div>
-
-    <!-- 画廊作品 液态玻璃全覆盖 -->
-    <div class="showcase">
-        <div class="showcase-header"><h3><i class="fas fa-images"></i> 液态叙事馆</h3><p>数字艺术 × 玻璃流体</p></div>
-        <div class="gallery">
-            <div class="gallery-item"><div class="gallery-img"><i class="fas fa-droplet"></i></div><div class="gallery-info"><h4>水滴交响</h4><p>动态液体模拟</p></div></div>
-            <div class="gallery-item"><div class="gallery-img"><i class="fas fa-fan"></i></div><div class="gallery-info"><h4>涟漪扩散</h4><p>交互式光晕</p></div></div>
-            <div class="gallery-item"><div class="gallery-img"><i class="fas fa-spa"></i></div><div class="gallery-info"><h4>琉璃极光</h4><p>色彩融合艺术</p></div></div>
-            <div class="gallery-item"><div class="gallery-img"><i class="fas fa-moon"></i></div><div class="gallery-info"><h4>月下潮汐</h4><p>宁静液态氛围</p></div></div>
-        </div>
-    </div>
-
-    <div class="testimonial">
-        <i class="fas fa-quote-left"></i>
-        <blockquote>全站统一的液态玻璃质感让人仿佛触摸到流动的光，每一个按钮都像是包裹着水银，华丽而细腻。</blockquote>
-        <div class="testimonial-author">—— 液态体验官 · 星尘</div>
-    </div>
-
-    <div class="contact-area">
-        <div class="contact-text"><h3>汇入液态星河</h3><p>开启你的玻璃流体设计之旅，探索无限创意。</p></div>
-        <div class="contact-btn"><i class="fas fa-paper-plane"></i> 立即沉浸</div>
-    </div>
-
-    <footer>
-        <div class="footer-content">
-            <div class="footer-logo"><i class="fas fa-feather-alt"></i> <span>液态宇宙 · 无界工坊</span></div>
-            <div class="footer-links"><span>流体</span><span>折射</span><span>高光</span><span>波光</span></div>
-            <div class="social-icons"><i class="fab fa-twitter"></i><i class="fab fa-instagram"></i><i class="fab fa-dribbble"></i><i class="fab fa-github"></i></div>
-        </div>
-        <div class="copyright">© 2026 液态玻璃全站美学 | 所有元素均采用动态模糊与液态高光</div>
-    </footer>
+    <!-- 按钮 3: 翡翠深澜 -->
+    <button class="liquid-btn liquid-btn--emerald" id="btnEmerald">
+        <div class="liquid-btn__base"></div>
+        <div class="liquid-btn__gloss"></div>
+        <div class="liquid-btn__ripple"></div>
+        <div class="liquid-btn__sheen"></div>
+        <div class="liquid-btn__edge"></div>
+        <span class="liquid-btn__text">翡翠凝露</span>
+    </button>
+</div>
+<div class="info-badge">
+    💧 液态玻璃 · 灵动按压涟漪
 </div>
 
 <script>
     (function() {
-        // 统一涟漪溅射函数 (增强液态按压感)
+        // 高级液体效果: 生成按压时 水花溅射 + 脉冲光晕 (提升液态玻璃触感)
+        
+        // 创建涟漪溅射效果 (模仿指尖触碰液体散开的感觉)
         function createLiquidSplash(event, btnElement) {
+            // 获取准确的点击坐标
             const rect = btnElement.getBoundingClientRect();
             let clientX, clientY;
+            
             if (event.touches) {
+                // 移动端触摸
                 clientX = event.touches[0].clientX;
                 clientY = event.touches[0].clientY;
             } else {
                 clientX = event.clientX;
                 clientY = event.clientY;
             }
+            
             const x = clientX - rect.left;
             const y = clientY - rect.top;
-            if (x < -30 || x > rect.width + 30 || y < -30 || y > rect.height + 30) return;
+            
+            // 边界限制，超出不产生效果，但仍然防止误判
+            if (x < -20 || x > rect.width + 20 || y < -20 || y > rect.height + 20) return;
+            
+            // 确保坐标在合理范围内
             const relX = Math.min(Math.max(x, 0), rect.width);
             const relY = Math.min(Math.max(y, 0), rect.height);
+            
+            // === 水滴飞溅效果 ===
             const splash = document.createElement('div');
             splash.className = 'liquid-splash';
-            const size = Math.min(rect.width, rect.height) * 0.45;
+            const size = Math.min(rect.width, rect.height) * 0.4;
             splash.style.width = `${size}px`;
             splash.style.height = `${size}px`;
             splash.style.left = `${relX - size/2}px`;
             splash.style.top = `${relY - size/2}px`;
             splash.style.position = 'absolute';
-            splash.style.background = `radial-gradient(circle, rgba(255, 255, 250, 0.9) 0%, rgba(120, 180, 250, 0.5) 80%)`;
-            splash.style.filter = 'blur(6px)';
+            splash.style.borderRadius = '50%';
+            splash.style.background = `radial-gradient(circle, rgba(255, 255, 245, 0.85) 0%, rgba(170, 210, 255, 0.4) 70%)`;
+            splash.style.filter = 'blur(5px)';
             splash.style.pointerEvents = 'none';
-            splash.style.zIndex = '999';
+            splash.style.zIndex = '22';
             btnElement.style.overflow = 'visible';
             btnElement.appendChild(splash);
-            splash.addEventListener('animationend', () => { splash.remove(); if(!btnElement.querySelector('.liquid-splash')) btnElement.style.overflow = ''; });
-            setTimeout(() => { if(splash.parentNode) splash.remove(); }, 550);
-            if (window.navigator && window.navigator.vibrate) try { window.navigator.vibrate(5); } catch(e) {}
+            
+            // 脉冲光晕加强液态爆发感
+            const pulse = document.createElement('div');
+            pulse.className = 'liquid-pulse';
+            const pulseSize = Math.min(rect.width, rect.height) * 0.28;
+            pulse.style.width = `${pulseSize}px`;
+            pulse.style.height = `${pulseSize}px`;
+            pulse.style.left = `${relX - pulseSize/2}px`;
+            pulse.style.top = `${relY - pulseSize/2}px`;
+            pulse.style.position = 'absolute';
+            pulse.style.background = 'radial-gradient(circle, rgba(255, 220, 140, 0.8), rgba(255, 180, 80, 0.2))';
+            pulse.style.filter = 'blur(7px)';
+            pulse.style.zIndex = '21';
+            btnElement.appendChild(pulse);
+            
+            // 移除元素并恢复 overflow (若没有其他动画元素时)
+            const removeEffects = () => {
+                splash.remove();
+                pulse.remove();
+                if (btnElement.querySelectorAll('.liquid-splash, .liquid-pulse').length === 0) {
+                    // 恢复原始的 overflow，但按钮原本 overflow hidden 最好复原
+                    btnElement.style.overflow = '';
+                }
+            };
+            
+            splash.addEventListener('animationend', removeEffects);
+            pulse.addEventListener('animationend', () => {
+                // 确保 pulse 移除，但可能 splash 先移除，单独处理即可
+                if (pulse.parentNode) pulse.remove();
+            });
+            
+            // 额外备选: 如果动画未触发 超时移除
+            setTimeout(() => {
+                if (splash.parentNode) splash.remove();
+                if (pulse.parentNode) pulse.remove();
+                if (btnElement.querySelectorAll('.liquid-splash, .liquid-pulse').length === 0) {
+                    btnElement.style.overflow = '';
+                }
+            }, 700);
         }
-
-        // 为所有液态按钮绑定交互 (包括所有 .liquid-btn)
-        const allLiquidBtns = document.querySelectorAll('.liquid-btn');
-        allLiquidBtns.forEach(btn => {
-            btn.addEventListener('mousedown', (e) => createLiquidSplash(e, btn));
-            btn.addEventListener('touchstart', (e) => { createLiquidSplash(e, btn); }, { passive: false });
+        
+        // 给按钮添加交互：鼠标/触摸产生液态波纹特效
+        const buttons = document.querySelectorAll('.liquid-btn');
+        
+        function attachRippleEvents(btn) {
+            // 鼠标/指针事件
+            btn.addEventListener('mousedown', (e) => {
+                createLiquidSplash(e, btn);
+                // 轻微触感反馈可选 (增加高级感)
+                if (window.navigator && window.navigator.vibrate && e.button === 0) {
+                    // 轻反馈，不影响体验，仅支持支持振动的设备
+                    try { window.navigator.vibrate(8); } catch(e) {}
+                }
+            });
+            
+            // 移动端触摸
+            btn.addEventListener('touchstart', (e) => {
+                // 阻止轻微滚动避免页面滚动时同时触发不自然，但为了性能，只产生效果不 preventDefault（保留滚动）
+                if (e.cancelable) {
+                    // 不 preventDefault 保留原生滚动，但对按钮涟漪没有影响
+                }
+                createLiquidSplash(e, btn);
+                try {
+                    if (window.navigator && window.navigator.vibrate) window.navigator.vibrate(6);
+                } catch(e) {}
+            }, { passive: false });
+            
+            // 增加click时控制台演示(不干扰) 
             btn.addEventListener('click', (e) => {
-                const txt = btn.querySelector('.liquid-btn__text')?.innerText || '液态按钮';
-                console.log(`💧 液态玻璃触发「${txt}」水漾脉冲`);
-            });
-        });
-
-        // 轻微视差效果 & 防止任何跳转
-        const heroTitle = document.querySelector('.hero-content h1');
-        if(heroTitle) {
-            window.addEventListener('scroll', () => {
-                let scrollVal = window.scrollY;
-                heroTitle.style.transform = `translateY(${Math.min(scrollVal * 0.08, 18)}px)`;
+                const textSpan = btn.querySelector('.liquid-btn__text');
+                const btnName = textSpan ? textSpan.innerText : '按钮';
+                console.log(`✨ 液态玻璃按钮 [${btnName}] 触发，灵动水漾质感 ✨`);
             });
         }
-        // 全局禁用跳转风格 (所有模拟按钮)
-        document.querySelectorAll('.mock-btn, .contact-btn, .nav-links span, .social-icons i, .footer-links span').forEach(el => {
-            if(el.style.cursor !== 'pointer') el.style.cursor = 'pointer';
-            el.addEventListener('click', (e) => {
-                e.preventDefault();
-                console.log('✨ 液态玻璃界面交互（无跳转）');
+        
+        buttons.forEach(btn => attachRippleEvents(btn));
+        
+        // 添加额外动态悬停/离开模拟强化液态流动（与CSS结合）
+        // 针对每个按钮，鼠标移动时根据鼠标位置改变高光微偏移（可选高级效果）
+        // 增强: 鼠标移动时光泽跟随 (液态磁吸感)
+        function addMagneticGloss(btn) {
+            const glossLayer = btn.querySelector('.liquid-btn__gloss');
+            const rippleLayer = btn.querySelector('.liquid-btn__ripple');
+            if (!glossLayer) return;
+            
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = (e.clientX - rect.left) / rect.width;  // 0-1 范围
+                const y = (e.clientY - rect.top) / rect.height;
+                // 让高光轻微跟随鼠标方向移动，更液态智能感
+                const moveX = (x - 0.5) * 12;
+                const moveY = (y - 0.5) * 8;
+                glossLayer.style.transform = `translateX(${moveX}%) translateY(${moveY}%)`;
+                if (rippleLayer) {
+                    // 同时让波纹层放射中心跟随
+                    rippleLayer.style.background = `radial-gradient(circle at ${x * 100}% ${y * 100}%, rgba(220, 240, 255, 0.5) 0%, rgba(100, 150, 210, 0.08) 75%)`;
+                }
             });
+            
+            btn.addEventListener('mouseleave', () => {
+                glossLayer.style.transform = '';
+                if (rippleLayer) {
+                    rippleLayer.style.background = '';
+                }
+            });
+        }
+        
+        buttons.forEach(btn => addMagneticGloss(btn));
+        
+        // 针对移动端的触摸移动取消跟随效果，避免性能开销，不处理即可。
+        // 额外确保 iOS 上按钮点击无闪白（已通过 css 处理）
+        
+        // 让 .liquid-btn__sheen 偶尔改变方向增加液态流动感 (已经用动画)
+        // 并且增加初始化自适应: 如果用户偏好减少动画，降低动画性能
+        const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+        if (mediaQuery.matches) {
+            const styleSheet = document.createElement('style');
+            styleSheet.textContent = `
+                .liquid-btn__gloss, .liquid-btn__sheen {
+                    animation: none !important;
+                    transition: none !important;
+                }
+            `;
+            document.head.appendChild(styleSheet);
+        }
+        
+        // 辅助特性: 视差光晕重置及防抖
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            if (resizeTimer) clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                // 重新校正可能偏移，什么都不用做
+            }, 100);
         });
+        
+        // 添加入场时的小惊喜: 模拟水波呼吸效果 (只在初次加载时轻微显示)
+        setTimeout(() => {
+            buttons.forEach((btn, idx) => {
+                btn.style.transition = 'transform 0.3s';
+                btn.style.transform = 'scale(1.02)';
+                setTimeout(() => {
+                    btn.style.transform = '';
+                }, 200 + idx * 80);
+            });
+        }, 100);
     })();
 </script>
 </body>
 </html>
-```
