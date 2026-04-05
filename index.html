@@ -2,8 +2,8 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>星辰印象 | 创意无限主页</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+    <title>星辰印象 | 液态玻璃 · 创意无限主页</title>
     <!-- 引入 Google Fonts 提升字体质感 -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
     <!-- Font Awesome 6 (免费图标库) 增加视觉细节 -->
@@ -13,11 +13,12 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #fafcff;
+            background: radial-gradient(ellipse at 30% 20%, #f2f6fe, #e9eef8);
             color: #1a1e2b;
             line-height: 1.5;
             scroll-behavior: smooth;
@@ -165,31 +166,165 @@
             color: #5f6c84;
             letter-spacing: 0.3px;
         }
+        
+        /* 右侧视觉区：替换为液态玻璃按钮集群，增强互动 */
         .hero-visual {
             flex: 1;
             display: flex;
             justify-content: center;
             align-items: center;
             position: relative;
+            flex-direction: column;
+            gap: 24px;
         }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(12px);
-            border-radius: 42px;
-            padding: 32px 28px;
-            box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.2);
-            border: 1px solid rgba(255,255,255,0.5);
-            text-align: center;
-            width: 280px;
+        
+        /* ********** 液态玻璃按钮核心样式（增强版） ********** */
+        .liquid-btn {
+            position: relative;
+            width: 260px;
+            height: 80px;
+            border-radius: 100px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            font-weight: 590;
+            letter-spacing: 1px;
+            transition: transform 0.25s cubic-bezier(0.2, 0.95, 0.4, 1.05);
+            will-change: transform;
+            overflow: hidden;
         }
-        .glass-card i {
-            font-size: 3.5rem;
-            color: #3a5a9a;
-            margin-bottom: 16px;
+        .liquid-btn__base {
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background: linear-gradient(135deg, rgba(140, 170, 210, 0.28) 0%, rgba(80, 110, 150, 0.38) 100%);
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-top-color: rgba(255, 255, 255, 0.75);
+            border-bottom-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 15px 30px -8px rgba(0, 0, 0, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.5);
+            transition: all 0.3s ease;
+            z-index: 0;
         }
-        .glass-card p {
-            font-weight: 500;
-            color: #1f2a44;
+        .liquid-btn__gloss {
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background: radial-gradient(ellipse at 30% 25%, rgba(255, 255, 245, 0.5) 0%, rgba(255, 255, 255, 0.08) 60%);
+            opacity: 0.7;
+            z-index: 1;
+            pointer-events: none;
+            mix-blend-mode: overlay;
+            transition: all 0.4s;
+            filter: blur(3px);
+            animation: floatLiquid 7s infinite ease-in-out;
+        }
+        .liquid-btn__ripple {
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background: radial-gradient(circle at 70% 55%, rgba(200, 225, 255, 0.4) 0%, rgba(100, 150, 210, 0) 75%);
+            opacity: 0.55;
+            z-index: 1;
+            pointer-events: none;
+            mix-blend-mode: soft-light;
+        }
+        .liquid-btn__sheen {
+            position: absolute;
+            top: -20%;
+            left: -30%;
+            width: 160%;
+            height: 160%;
+            background: linear-gradient(115deg, rgba(255,255,255,0) 20%, rgba(255,255,255,0.3) 45%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0.3) 55%, rgba(255,255,255,0) 80%);
+            transform: rotate(25deg);
+            opacity: 0.35;
+            pointer-events: none;
+            z-index: 2;
+            filter: blur(5px);
+            animation: sheenSlide 9s infinite alternate ease-in-out;
+        }
+        .liquid-btn__text {
+            position: relative;
+            z-index: 5;
+            background: linear-gradient(135deg, #FFFFFF 30%, #EAF3FF 80%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        /* 悬停效果 */
+        @media (hover: hover) {
+            .liquid-btn:hover {
+                transform: translateY(-4px) scale(1.02);
+            }
+            .liquid-btn:hover .liquid-btn__base {
+                background: linear-gradient(135deg, rgba(160, 190, 230, 0.35) 0%, rgba(100, 130, 180, 0.45) 100%);
+                backdrop-filter: blur(20px) saturate(200%);
+                border-color: rgba(255, 255, 255, 0.65);
+                box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.3);
+            }
+            .liquid-btn:hover .liquid-btn__gloss {
+                opacity: 0.9;
+            }
+            .liquid-btn:hover .liquid-btn__text {
+                background: linear-gradient(135deg, #FFFFFF, #FFFFFF);
+                -webkit-background-clip: text;
+                background-clip: text;
+                text-shadow: 0 0 6px rgba(255, 255, 255, 0.5);
+            }
+        }
+        .liquid-btn:active {
+            transform: scale(0.96);
+            transition: transform 0.08s cubic-bezier(0.2, 0.9, 0.5, 1);
+        }
+        .liquid-btn:active .liquid-btn__base {
+            background: linear-gradient(135deg, rgba(100, 130, 170, 0.45) 0%, rgba(70, 95, 130, 0.55) 100%);
+            backdrop-filter: blur(12px) saturate(170%);
+            box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.25);
+        }
+        /* 第二种风格 (紫罗兰) */
+        .liquid-btn--violet .liquid-btn__base {
+            background: linear-gradient(135deg, rgba(175, 140, 210, 0.28) 0%, rgba(120, 85, 165, 0.38) 100%);
+            border-color: rgba(220, 190, 255, 0.5);
+        }
+        .liquid-btn--violet .liquid-btn__text {
+            background: linear-gradient(135deg, #F3EFFF, #E0CDFF);
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+        /* 动画 */
+        @keyframes floatLiquid {
+            0% { transform: translateX(-3%) translateY(-2%) rotate(0deg); }
+            50% { transform: translateX(3%) translateY(2%) rotate(1deg); }
+            100% { transform: translateX(-3%) translateY(-2%) rotate(0deg); }
+        }
+        @keyframes sheenSlide {
+            0% { transform: rotate(25deg) translateX(-5%) translateY(-10%); }
+            100% { transform: rotate(25deg) translateX(5%) translateY(10%); }
+        }
+        /* 水花溅射效果 */
+        .liquid-splash {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(210, 230, 255, 0.4) 80%);
+            filter: blur(6px);
+            pointer-events: none;
+            z-index: 20;
+            transform: scale(0);
+            opacity: 0.9;
+            animation: splashAnim 0.6s cubic-bezier(0.2, 0.9, 0.4, 1) forwards;
+        }
+        @keyframes splashAnim {
+            0% { transform: scale(0); opacity: 0.9; }
+            40% { opacity: 0.7; }
+            100% { transform: scale(4.5); opacity: 0; }
         }
         .floating-shape {
             position: absolute;
@@ -200,6 +335,7 @@
             z-index: -1;
             bottom: -20px;
             right: -30px;
+            pointer-events: none;
         }
 
         /* 通用部分标题 */
@@ -222,7 +358,7 @@
             font-size: 1.05rem;
         }
 
-        /* 卡片网格 - 特色区域 */
+        /* 卡片网格 */
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -264,9 +400,10 @@
             line-height: 1.5;
         }
 
-        /* 作品 / 展示区 (无跳转，纯视觉) */
+        /* 作品展示区 */
         .showcase {
-            background: #ffffff;
+            background: #ffffffcc;
+            backdrop-filter: blur(2px);
             border-radius: 48px;
             margin: 40px 0 60px;
             padding: 48px 32px;
@@ -350,7 +487,7 @@
             color: #2f4172;
         }
 
-        /* 联系区域 — 无实际提交跳转，纯展示 */
+        /* 联系区域 */
         .contact-area {
             background: #1E2A44;
             border-radius: 48px;
@@ -388,7 +525,6 @@
             border-color: #ffffff80;
         }
 
-        /* 页脚 无跳转链接 */
         footer {
             border-top: 1px solid #e2e8f0;
             padding: 40px 0 48px;
@@ -448,8 +584,10 @@
                 flex-direction: column;
                 text-align: center;
             }
-            .section-title h2 {
-                font-size: 1.9rem;
+            .liquid-btn {
+                width: 220px;
+                height: 70px;
+                font-size: 1.2rem;
             }
         }
     </style>
@@ -457,7 +595,7 @@
 <body>
 
 <div class="container">
-    <!-- 导航栏 只有视觉元素，无跳转链接 -->
+    <!-- 导航栏 -->
     <div class="navbar">
         <div class="logo">
             <i class="fas fa-feather-alt"></i>
@@ -474,7 +612,7 @@
         </div>
     </div>
 
-    <!-- Hero 主要区域 -->
+    <!-- Hero 区域 + 液态玻璃按钮融合 -->
     <div class="hero">
         <div class="hero-content">
             <div class="hero-badge">
@@ -498,172 +636,133 @@
             </div>
         </div>
         <div class="hero-visual">
-            <div class="glass-card">
-                <i class="fas fa-cloud-moon"></i>
-                <p>“设计是流动的诗歌”</p>
-                <span style="font-size: 0.75rem; color:#6f7c9a;">今日 · 静观</span>
-            </div>
+            <!-- 液态玻璃按钮组 融合交互与设计 -->
+            <button class="liquid-btn" id="liquidMainBtn">
+                <div class="liquid-btn__base"></div>
+                <div class="liquid-btn__gloss"></div>
+                <div class="liquid-btn__ripple"></div>
+                <div class="liquid-btn__sheen"></div>
+                <span class="liquid-btn__text">✨ 液态启幕</span>
+            </button>
+            <button class="liquid-btn liquid-btn--violet" id="liquidSecondBtn">
+                <div class="liquid-btn__base"></div>
+                <div class="liquid-btn__gloss"></div>
+                <div class="liquid-btn__ripple"></div>
+                <div class="liquid-btn__sheen"></div>
+                <span class="liquid-btn__text">💎 梦幻涟漪</span>
+            </button>
             <div class="floating-shape"></div>
         </div>
     </div>
 
-    <!-- 特色卡片区 - 四个核心特质 -->
+    <!-- 特色卡片区 -->
     <div class="section-title">
         <h2>灵感构筑 · 精细内核</h2>
         <p>纯粹的设计语言，丰富的表达层次</p>
     </div>
     <div class="features-grid">
-        <div class="feature-card">
-            <div class="feature-icon"><i class="fas fa-gem"></i></div>
-            <h3>极简美学</h3>
-            <p>清晰的信息层级，优雅的留白与和谐的配色体系，带来高级视觉享受。</p>
-        </div>
-        <div class="feature-card">
-            <div class="feature-icon"><i class="fas fa-hand-sparkles"></i></div>
-            <h3>沉浸微交互</h3>
-            <p>悬停、过渡与细腻动效，让每个元素都富有生命力且不喧宾夺主。</p>
-        </div>
-        <div class="feature-card">
-            <div class="feature-icon"><i class="fas fa-palette"></i></div>
-            <h3>色彩情绪</h3>
-            <p>深海蓝与月石灰交织，营造沉静又充满灵感的现代数字氛围。</p>
-        </div>
-        <div class="feature-card">
-            <div class="feature-icon"><i class="fas fa-cloud-sun"></i></div>
-            <h3>响应式布局</h3>
-            <p>完美适配各种设备，从移动端到宽屏，始终呈现绝佳姿态。</p>
-        </div>
+        <div class="feature-card"><div class="feature-icon"><i class="fas fa-gem"></i></div><h3>极简美学</h3><p>清晰的信息层级，优雅的留白与和谐的配色体系。</p></div>
+        <div class="feature-card"><div class="feature-icon"><i class="fas fa-hand-sparkles"></i></div><h3>沉浸微交互</h3><p>悬停、过渡与细腻动效，每个元素都富有生命力。</p></div>
+        <div class="feature-card"><div class="feature-icon"><i class="fas fa-palette"></i></div><h3>色彩情绪</h3><p>深海蓝与月石灰交织，营造沉静又充满灵感的氛围。</p></div>
+        <div class="feature-card"><div class="feature-icon"><i class="fas fa-cloud-sun"></i></div><h3>响应式布局</h3><p>完美适配各种设备，从移动端到宽屏，呈现绝佳姿态。</p></div>
     </div>
 
-    <!-- 作品展示块 - 仅视觉无跳转 -->
+    <!-- 作品展示块 -->
     <div class="showcase">
-        <div class="showcase-header">
-            <h3><i class="fas fa-images"></i> 创意叙事 · 视觉档案</h3>
-            <p>精选概念设计，探索风格边界</p>
-        </div>
+        <div class="showcase-header"><h3><i class="fas fa-images"></i> 创意叙事 · 视觉档案</h3><p>精选概念设计，探索风格边界</p></div>
         <div class="gallery">
-            <div class="gallery-item">
-                <div class="gallery-img"><i class="fas fa-mountain-sun"></i></div>
-                <div class="gallery-info">
-                    <h4>远山回声</h4>
-                    <p>自然韵律 · 抽象表达</p>
-                </div>
-            </div>
-            <div class="gallery-item">
-                <div class="gallery-img"><i class="fas fa-water"></i></div>
-                <div class="gallery-info">
-                    <h4>液态梦境</h4>
-                    <p>流动色彩 / 数字艺术</p>
-                </div>
-            </div>
-            <div class="gallery-item">
-                <div class="gallery-img"><i class="fas fa-cube"></i></div>
-                <div class="gallery-info">
-                    <h4>几何秩序</h4>
-                    <p>结构主义与现代构成</p>
-                </div>
-            </div>
-            <div class="gallery-item">
-                <div class="gallery-img"><i class="fas fa-leaf"></i></div>
-                <div class="gallery-info">
-                    <h4>静谧花园</h4>
-                    <p>柔和光影 · 治愈氛围</p>
-                </div>
-            </div>
+            <div class="gallery-item"><div class="gallery-img"><i class="fas fa-mountain-sun"></i></div><div class="gallery-info"><h4>远山回声</h4><p>自然韵律 · 抽象表达</p></div></div>
+            <div class="gallery-item"><div class="gallery-img"><i class="fas fa-water"></i></div><div class="gallery-info"><h4>液态梦境</h4><p>流动色彩 / 数字艺术</p></div></div>
+            <div class="gallery-item"><div class="gallery-img"><i class="fas fa-cube"></i></div><div class="gallery-info"><h4>几何秩序</h4><p>结构主义与现代构成</p></div></div>
+            <div class="gallery-item"><div class="gallery-img"><i class="fas fa-leaf"></i></div><div class="gallery-info"><h4>静谧花园</h4><p>柔和光影 · 治愈氛围</p></div></div>
         </div>
     </div>
 
-    <!-- 用户感言区 无跳转外部 -->
     <div class="testimonial">
         <i class="fas fa-quote-left"></i>
-        <blockquote>
-            每一个细节都像是为情绪量身定制的港湾。没有繁杂的跳转，没有多余的干扰，<br>
-            却让我感受到了设计的深层温度。
-        </blockquote>
+        <blockquote>每一个细节都像是为情绪量身定制的港湾。没有繁杂的跳转，没有多余的干扰，<br>却让我感受到了设计的深层温度。</blockquote>
         <div class="testimonial-author">—— 鸟鸟 · 谷子</div>
     </div>
 
-    <!-- 联系区块 模拟交互但无实际跳转，优雅展示 -->
     <div class="contact-area">
-        <div class="contact-text">
-            <h3>让想法落笔生花</h3>
-            <p>探索更多创意方向，随时开启你的灵感之旅。</p>
-        </div>
-        <div class="contact-btn">
-            <i class="fas fa-paper-plane"></i> 鸟
-        </div>
+        <div class="contact-text"><h3>让想法落笔生花</h3><p>探索更多创意方向，随时开启你的灵感之旅。</p></div>
+        <div class="contact-btn"><i class="fas fa-paper-plane"></i> 鸟</div>
     </div>
 
-    <!-- 页脚部分 无跳转链接 -->
     <footer>
         <div class="footer-content">
-            <div class="footer-logo">
-                <i class="fas fa-feather-alt"></i> <span>星辰叙事·无界工坊</span>
-            </div>
-            <div class="footer-links">
-                <span>1</span>
-                <span>2</span>
-                <span>3</span>
-                <span>4</span>
-            </div>
-            <div class="social-icons">
-                <i class="fab fa-twitter"></i>
-                <i class="fab fa-instagram"></i>
-                <i class="fab fa-dribbble"></i>
-                <i class="fab fa-github"></i>
-            </div>
+            <div class="footer-logo"><i class="fas fa-feather-alt"></i> <span>星辰叙事·无界工坊</span></div>
+            <div class="footer-links"><span>1</span><span>2</span><span>3</span><span>4</span></div>
+            <div class="social-icons"><i class="fab fa-twitter"></i><i class="fab fa-instagram"></i><i class="fab fa-dribbble"></i><i class="fab fa-github"></i></div>
         </div>
-        <div class="copyright">
-            © 2026.3.27 星尘叙事 | 沉浸式主页体验 · 所有灵感源于想象 ｜ 视觉美学
-        </div>
+        <div class="copyright">© 2026.3.27 星尘叙事 | 沉浸式主页体验 · 液态玻璃灵感融合</div>
     </footer>
 </div>
 
-<!-- 增加一个简单的动态效果：滚动时标题微弱偏移，提升现代感，无跳转无链接，纯视觉趣味 -->
 <script>
     (function() {
-        // 纯装饰效果，滚动时让标题产生视差感，没有任何跳转或导航行为
+        // 液体溅射效果 (增强按压体验)
+        function createLiquidSplash(event, btnElement) {
+            const rect = btnElement.getBoundingClientRect();
+            let clientX, clientY;
+            if (event.touches) {
+                clientX = event.touches[0].clientX;
+                clientY = event.touches[0].clientY;
+            } else {
+                clientX = event.clientX;
+                clientY = event.clientY;
+            }
+            const x = clientX - rect.left;
+            const y = clientY - rect.top;
+            if (x < -20 || x > rect.width + 20 || y < -20 || y > rect.height + 20) return;
+            const relX = Math.min(Math.max(x, 0), rect.width);
+            const relY = Math.min(Math.max(y, 0), rect.height);
+            const splash = document.createElement('div');
+            splash.className = 'liquid-splash';
+            const size = Math.min(rect.width, rect.height) * 0.4;
+            splash.style.width = `${size}px`;
+            splash.style.height = `${size}px`;
+            splash.style.left = `${relX - size/2}px`;
+            splash.style.top = `${relY - size/2}px`;
+            splash.style.position = 'absolute';
+            splash.style.background = `radial-gradient(circle, rgba(255, 255, 245, 0.85) 0%, rgba(170, 210, 255, 0.4) 70%)`;
+            splash.style.filter = 'blur(5px)';
+            splash.style.pointerEvents = 'none';
+            splash.style.zIndex = '22';
+            btnElement.style.overflow = 'visible';
+            btnElement.appendChild(splash);
+            splash.addEventListener('animationend', () => {
+                splash.remove();
+                if (!btnElement.querySelector('.liquid-splash')) btnElement.style.overflow = '';
+            });
+            setTimeout(() => { if(splash.parentNode) splash.remove(); }, 600);
+            if (window.navigator && window.navigator.vibrate) try { window.navigator.vibrate(6); } catch(e) {}
+        }
+
+        const btns = document.querySelectorAll('.liquid-btn');
+        btns.forEach(btn => {
+            btn.addEventListener('mousedown', (e) => createLiquidSplash(e, btn));
+            btn.addEventListener('touchstart', (e) => { createLiquidSplash(e, btn); }, { passive: false });
+            btn.addEventListener('click', (e) => {
+                const textSpan = btn.querySelector('.liquid-btn__text');
+                console.log(`✨ 液态玻璃按钮「${textSpan?.innerText || '按钮'}」触发，灵动水漾质感 ✨`);
+            });
+        });
+
+        // 优雅视差滚动效果
         const heroTitle = document.querySelector('.hero-content h1');
         if(heroTitle) {
             window.addEventListener('scroll', () => {
                 let scrollVal = window.scrollY;
                 let moveY = scrollVal * 0.08;
-                if(moveY < 30) {
-                    heroTitle.style.transform = `translateY(${moveY * 0.3}px)`;
-                } else {
-                    heroTitle.style.transform = `translateY(8px)`;
-                }
+                heroTitle.style.transform = `translateY(${Math.min(moveY * 0.3, 12)}px)`;
             });
         }
-        // 简单 hover 卡片信息展示辅助效果，不加任何跳转
-        const cards = document.querySelectorAll('.feature-card, .gallery-item');
-        cards.forEach(card => {
-            card.addEventListener('click', (e) => {
-                // 阻止任何潜在的冒泡，但没有任何链接动作，只是优雅反馈
-                e.stopPropagation();
-                // 轻量级反馈：不进行跳转，仅控制台静默或者无操作，符合需求
-                // 可以添加一个简单的模拟“提示”，但为了干净体验，不做alert
-                // 完全无跳转，符合要求
-            });
-        });
-        // 确保所有伪交互元素无 href / 无实际链接
-        // 额外强化：如果任何元素产生意外跳转风险，拦截所有a标签（但本页面没有a标签）
-        const allElements = document.querySelectorAll('[href]');
-        allElements.forEach(el => {
-            if(el.tagName === 'A') {
-                el.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    console.log('无跳转模式，已阻止');
-                });
-            }
-        });
-        // 保证任何情况下都没有页面跳转 (本页面不存在a，但预防)
+
+        // 阻止任何意外的跳转行为（本页面无a标签但确保）
         document.querySelectorAll('.mock-btn, .contact-btn, .nav-links span, .footer-links span, .social-icons i').forEach(el => {
             el.style.cursor = 'default';
-            el.addEventListener('click', (e) => {
-                e.preventDefault();
-                // 完全无跳转
-            });
+            el.addEventListener('click', (e) => e.preventDefault());
         });
     })();
 </script>
