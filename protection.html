@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>保护倡议 - 玄凤鹦鹉守护计划(假的)</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .page-header {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            padding: 140px 20px 80px;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 2.8rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+
+        .content-grid.reverse {
+            direction: rtl;
+        }
+
+        .content-grid.reverse > * {
+            direction: ltr;
+        }
+
+        .content-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+
+        .content-text p {
+            color: var(--gray);
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .content-img {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .content-img img {
+            width: 100%;
+            display: block;
+            transition: transform 0.5s;
+        }
+
+        .content-img:hover img {
+            transform: scale(1.05);
+        }
+
+        .threats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .threat-card {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            border-left: 4px solid var(--accent);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+        }
+
+        .threat-card h4 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .threat-card p {
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        .pledge-section {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            padding: 80px 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .pledge-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+        }
+
+        .pledge-section p {
+            max-width: 700px;
+            margin: 0 auto 40px;
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+
+        .pledge-list {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+            list-style: none;
+        }
+
+        .pledge-list li {
+            padding: 15px 20px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: background 0.3s;
+        }
+
+        .pledge-list li:hover {
+            background: rgba(255,255,255,0.15);
+        }
+
+        .pledge-list .check {
+            width: 28px; height: 28px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            min-width: 28px;
+        }
+
+        .legal-section {
+            background: white;
+            padding: 60px;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            margin-top: 60px;
+        }
+
+        .legal-section h3 {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            color: var(--dark);
+        }
+
+        .legal-section .highlight-box {
+            margin: 20px 0;
+        }
+
+        @media (max-width: 768px) {
+            .content-grid { grid-template-columns: 1fr; }
+            .threats-grid { grid-template-columns: 1fr; }
+            .legal-section { padding: 30px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">🦜</div>
+                <span>玄凤守护计划</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="protection.html" class="active">保护倡议</a></li>
+                <li><a href="care-guide.html">饲养指南</a></li>
+                <li><a href="rescue.html">救助行动</a></li>
+                <li><a href="volunteer.html">志愿者招募</a></li>
+                <li><a href="contact.html">联系我们</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <h1>🛡️ 保护倡议</h1>
+        <p>了解玄凤鹦鹉的生存现状，加入我们的保护行列，共同守护这些可爱的小精灵</p>
+    </header>
+
+    <section class="section">
+        <div class="content-grid">
+            <div class="content-text">
+                <h3>为什么玄凤鹦鹉需要保护？</h3>
+                <p>玄凤鹦鹉（学名：Nymphicus hollandicus），又名鸡尾鹦鹉，原产于澳大利亚。它们性格温顺、聪明亲人，是世界上最受欢迎的宠物鹦鹉之一。</p>
+                <p>然而，由于许多人对玄凤鹦鹉的饲养需求缺乏了解，导致大量鹦鹉被遗弃、走失或遭受不当对待。玄凤鹦鹉在野外<strong>无法独立生存</strong>，一旦被遗弃，等待它们的只有饥饿、疾病和死亡。</p>
+                <p>我们的使命是通过科普教育、收容救助和领养平台，减少玄凤鹦鹉的弃养现象，为每一只小精灵提供应有的关爱与保护。</p>
+            </div>
+            <div class="content-img">
+                <img src="https://kimi-web-img.moonshot.cn/img/picn.huitu.com/915acc9ead760599d8b4c3c7a5b04509594b62af.jpg" alt="玄凤鹦鹉特写">
+            </div>
+        </div>
+
+        <div class="content-grid reverse">
+            <div class="content-text">
+                <h3>玄凤鹦鹉面临的威胁</h3>
+                <div class="threats-grid">
+                    <div class="threat-card">
+                        <h4>😢 冲动购买后弃养</h4>
+                        <p>许多人因玄凤鹦鹉可爱的外表而冲动购买，却发现饲养需要大量时间和精力，最终选择遗弃。</p>
+                    </div>
+                    <div class="threat-card">
+                        <h4>🏠 不当饲养环境</h4>
+                        <p>笼子过小、缺乏玩具、长期独处等不当饲养方式导致鹦鹉出现抑郁、啄羽等心理问题。</p>
+                    </div>
+                    <div class="threat-card">
+                        <h4>🍽️ 错误饮食习惯</h4>
+                        <p>单一饮食、喂食人类食物、缺乏钙质补充等错误喂养方式严重影响鹦鹉健康。</p>
+                    </div>
+                    <div class="threat-card">
+                        <h4>🚪 意外飞走失散</h4>
+                        <p>未剪羽或门窗未关好导致鹦鹉飞走，在野外因无法觅食而面临生存危机。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="content-img">
+                <img src="https://kimi-web-img.moonshot.cn/img/p1.itc.cn/e17dab9e6f03e955ecd0ff19e9870eb431154113.jpeg" alt="野外鹦鹉">
+            </div>
+        </div>
+    </section>
+
+    <!-- 法律法规 -->
+    <section class="section">
+        <div class="legal-section">
+            <h3>📜 相关法律法规</h3>
+            <p style="color: var(--gray); margin-bottom: 25px;">根据《中华人民共和国野生动物保护法》及相关规定，玄凤鹦鹉的饲养和交易有明确的法律规范：</p>
+            
+            <div class="highlight-box">
+                <strong>✅ 合法饲养</strong><br>
+                玄凤鹦鹉（鸡尾鹦鹉）、虎皮鹦鹉、桃脸牡丹鹦鹉这三种鹦鹉不属于国家重点保护野生动物，个人饲养、交易、繁育均<strong>无需办理任何证件或审批手续</strong>。
+            </div>
+            
+            <div class="highlight-box" style="border-left-color: var(--accent); background: linear-gradient(135deg, #fee2e2 0%, #fef2f2 100%);">
+                <strong>⚠️ 禁止行为</strong><br>
+                禁止使用粘网、毒饵等工具捕鸟；禁止猎捕、杀害或出售国家保护动物；所有鹦鹉均<strong>严禁食用</strong>。
+            </div>
+            
+            <div class="highlight-box" style="border-left-color: var(--secondary); background: linear-gradient(135deg, #d1fae5 0%, #ecfdf5 100%);">
+                <strong>💡 温馨提示</strong><br>
+                虽然玄凤鹦鹉可以无证饲养，但我们强烈建议饲主在饲养前充分了解相关知识，确保有能力为鹦鹉提供终身的关爱与照顾。玄凤鹦鹉的寿命可达<strong>10-20年</strong>，饲养是一项长期承诺。
+            </div>
+        </div>
+    </section>
+
+    <!-- 保护承诺 -->
+    <section class="pledge-section">
+        <h2>🤝 加入保护承诺</h2>
+        <p>我们呼吁每一位玄凤鹦鹉爱好者签署以下保护承诺，用实际行动守护这些小精灵</p>
+        <ul class="pledge-list">
+            <li><span class="check">✓</span> 在饲养前充分了解玄凤鹦鹉的饲养需求，确保有能力提供终身照顾</li>
+            <li><span class="check">✓</span> 为鹦鹉提供宽敞、干净、安全的居住环境</li>
+            <li><span class="check">✓</span> 提供多样化、营养均衡的饮食，定期补充钙质和维生素</li>
+            <li><span class="check">✓</span> 每天花时间陪伴鹦鹉，满足其社交需求</li>
+            <li><span class="check">✓</span> 定期带鹦鹉进行健康检查，及时发现和治疗疾病</li>
+            <li><span class="check">✓</span> 绝不随意弃养，如因特殊原因无法继续饲养，联系专业救助机构</li>
+            <li><span class="check">✓</span> 积极向身边的人普及科学饲养知识，减少弃养现象</li>
+            <li><span class="check">✓</span> 发现被遗弃或受伤的玄凤鹦鹉，及时联系救助组织</li>
+        </ul>
+        <a href="volunteer.html" class="btn btn-primary" style="margin-top: 40px;">立即签署承诺</a>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-grid">
+            <div>
+                <h4>🦜 玄凤守护计划</h4>
+                <p>致力于玄凤鹦鹉的保护与救助，<br>让每一只小精灵都有温暖的家。</p>
+            </div>
+            <div>
+                <h4>快速链接</h4>
+                <p><a href="index.html">首页</a></p>
+                <p><a href="protection.html">保护倡议</a></p>
+                <p><a href="care-guide.html">饲养指南</a></p>
+                <p><a href="rescue.html">救助行动</a></p>
+            </div>
+            <div>
+                <h4>参与方式</h4>
+                <p><a href="volunteer.html">成为志愿者</a></p>
+                <p><a href="rescue.html">领养鹦鹉</a></p>
+                <p><a href="contact.html">捐赠支持</a></p>
+                <p><a href="contact.html">联系我们</a></p>
+            </div>
+            <div>
+                <h4>联系方式</h4>
+                <p>📞 救助热线：400-XXX-XXXX</p>
+                <p>📧 邮箱：rescue@cockatiel.org</p>
+                <p>📍 地址：XX市XX区XX路XX号</p>
+                <p>🕐 工作时间：周一至周日 9:00-21:00</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 玄凤鹦鹉守护计划 | 让每一只小精灵都被温柔以待 🦜</p>
+        </div>
+    </footer>
+</body>
+</html>

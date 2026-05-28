@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>志愿者招募(假的) - 玄凤鹦鹉守护计划</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .page-header {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            padding: 140px 20px 80px;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 2.8rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .roles-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .role-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            transition: all 0.3s;
+            border-top: 4px solid var(--primary);
+        }
+
+        .role-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+        }
+
+        .role-icon {
+            width: 80px; height: 80px;
+            background: var(--light);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2.5rem;
+        }
+
+        .role-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+            color: var(--dark);
+        }
+
+        .role-card p {
+            color: var(--gray);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .role-requirements {
+            text-align: left;
+            background: var(--cream);
+            padding: 15px 20px;
+            border-radius: 12px;
+            margin-top: 15px;
+        }
+
+        .role-requirements li {
+            padding: 5px 0;
+            color: var(--gray);
+            font-size: 0.9rem;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .role-requirements li::before {
+            content: '✓';
+            color: var(--secondary);
+            font-weight: bold;
+        }
+
+        .benefits-section {
+            background: white;
+            padding: 60px;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            margin: 60px 0;
+        }
+
+        .benefits-section h3 {
+            font-size: 1.8rem;
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--dark);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .benefit-item {
+            text-align: center;
+        }
+
+        .benefit-item .emoji {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .benefit-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: var(--dark);
+        }
+
+        .benefit-item p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        .testimonials-section {
+            margin: 60px 0;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            font-size: 4rem;
+            color: var(--primary);
+            opacity: 0.3;
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            line-height: 1;
+        }
+
+        .testimonial-card p {
+            color: var(--gray);
+            line-height: 1.8;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .testimonial-author .avatar {
+            width: 50px; height: 50px;
+            background: var(--light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .testimonial-author .name {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .testimonial-author .role {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .volunteer-form {
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .volunteer-form h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            text-align: center;
+            color: var(--dark);
+        }
+
+        .volunteer-form > p {
+            text-align: center;
+            color: var(--gray);
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            background: var(--cream);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .checkbox-item:hover {
+            background: #fde68a;
+        }
+
+        .checkbox-item input {
+            width: 20px; height: 20px;
+            accent-color: var(--primary);
+        }
+
+        @media (max-width: 768px) {
+            .roles-grid { grid-template-columns: 1fr; }
+            .benefits-grid { grid-template-columns: repeat(2, 1fr); }
+            .testimonials-grid { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+            .checkbox-group { grid-template-columns: 1fr; }
+            .volunteer-form { padding: 30px; }
+            .benefits-section { padding: 30px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">🦜</div>
+                <span>玄凤守护计划</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="protection.html">保护倡议</a></li>
+                <li><a href="care-guide.html">饲养指南</a></li>
+                <li><a href="rescue.html">救助行动</a></li>
+                <li><a href="volunteer.html" class="active">志愿者招募</a></li>
+                <li><a href="contact.html">联系我们</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <h1>🤝 志愿者招募</h1>
+        <p>加入我们，成为玄凤鹦鹉的守护者。每一份力量，都能为小精灵们带来希望</p>
+    </header>
+
+    <!-- 志愿者岗位 -->
+    <section class="section">
+        <div class="section-title">
+            <h2>志愿者岗位</h2>
+            <p>根据您的时间和特长，选择适合您的志愿服务方式</p>
+        </div>
+        <div class="roles-grid">
+            <div class="role-card">
+                <div class="role-icon">🚑</div>
+                <h3>现场救援员</h3>
+                <p>响应救助报告，前往现场进行安全捕捉和初步评估，将鹦鹉送往救助站。</p>
+                <ul class="role-requirements">
+                    <li>有交通工具，能灵活安排时间</li>
+                    <li>了解玄凤鹦鹉的基本习性</li>
+                    <li>有耐心和爱心，不怕脏不怕累</li>
+                    <li>能接受不定时的紧急救援任务</li>
+                </ul>
+            </div>
+            <div class="role-card">
+                <div class="role-icon">🏥</div>
+                <h3>医疗护理员</h3>
+                <p>在救助站照顾康复中的鹦鹉，包括喂食、清洁、观察健康状况等日常护理工作。</p>
+                <ul class="role-requirements">
+                    <li>每周至少能服务4小时</li>
+                    <li>细心负责，有基本的动物护理知识</li>
+                    <li>能接受培训和指导</li>
+                    <li>有饲养鹦鹉经验者优先</li>
+                </ul>
+            </div>
+            <div class="role-card">
+                <div class="role-icon">📢</div>
+                <h3>科普宣传员</h3>
+                <p>通过线上线下的方式，向公众普及玄凤鹦鹉的科学饲养知识和保护理念。</p>
+                <ul class="role-requirements">
+                    <li>善于沟通表达，有亲和力</li>
+                    <li>熟悉社交媒体运营（线上岗位）</li>
+                    <li>能撰写科普文章或制作视频</li>
+                    <li>有教育或传媒背景者优先</li>
+                </ul>
+            </div>
+            <div class="role-card">
+                <div class="role-icon">🏠</div>
+                <h3>临时寄养家庭</h3>
+                <p>为康复中的玄凤鹦鹉提供临时家庭环境，帮助它们适应家庭生活，为领养做准备。</p>
+                <ul class="role-requirements">
+                    <li>有稳定的居住环境和饲养条件</li>
+                    <li>家人同意并支持寄养</li>
+                    <li>有饲养玄凤鹦鹉的经验</li>
+                    <li>能接受定期回访和指导</li>
+                </ul>
+            </div>
+            <div class="role-card">
+                <div class="role-icon">🎨</div>
+                <h3>设计摄影师</h3>
+                <p>为救助的鹦鹉拍摄照片和视频，设计宣传物料，帮助它们更好地被领养。</p>
+                <ul class="role-requirements">
+                    <li>有摄影或设计专业技能</li>
+                    <li>自备摄影设备</li>
+                    <li>能定期到救助站拍摄</li>
+                    <li>有宠物摄影经验者优先</li>
+                </ul>
+            </div>
+            <div class="role-card">
+                <div class="role-icon">💻</div>
+                <h3>技术支持员</h3>
+                <p>维护网站、管理数据库、开发小程序等技术工作，为组织运营提供技术保障。</p>
+                <ul class="role-requirements">
+                    <li>有编程、设计或IT运维技能</li>
+                    <li>能远程协作，时间灵活</li>
+                    <li>有责任心，能按时完成任务</li>
+                    <li>有开源项目经验者优先</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 志愿者福利 -->
+    <section class="section">
+        <div class="benefits-section">
+            <h3>🎁 志愿者福利</h3>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="emoji">📜</div>
+                    <h4>志愿服务证书</h4>
+                    <p>累计服务满50小时，颁发官方志愿服务证书</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="emoji">🎓</div>
+                    <h4>专业培训机会</h4>
+                    <p>免费参加鹦鹉饲养、急救等专业培训课程</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="emoji">🦜</div>
+                    <h4>优先领养权</h4>
+                    <p>志愿者享有救助鹦鹉的优先领养权</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="emoji">👥</div>
+                    <h4>志同道合的伙伴</h4>
+                    <p>加入志愿者社群，结识更多爱鸟人士</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 志愿者心声 -->
+    <section class="section testimonials-section">
+        <div class="section-title">
+            <h2>志愿者心声</h2>
+            <p>听听我们的志愿者怎么说</p>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <p>加入玄凤守护计划已经两年了，每次成功救助一只小精灵，看到它重新展翅飞翔，那种成就感无法用语言形容。这里有一群真正热爱鹦鹉的伙伴，我们一起努力，让这个世界变得更温暖。</p>
+                <div class="testimonial-author">
+                    <div class="avatar">👩</div>
+                    <div>
+                        <div class="name">李晓明</div>
+                        <div class="role">现场救援员 · 服务2年</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <p>作为一名设计师，我能用自己的专业技能为这些可爱的小生命做贡献，感觉特别有意义。每次为待领养的鹦鹉拍摄照片，看到它们找到新家，我都觉得所有的付出都是值得的。</p>
+                <div class="testimonial-author">
+                    <div class="avatar">👨</div>
+                    <div>
+                        <div class="name">王艺涵</div>
+                        <div class="role">设计摄影师 · 服务1年</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 报名表单 -->
+    <section class="section">
+        <div class="volunteer-form">
+            <h3>📝 志愿者报名表</h3>
+            <p>填写以下信息，我们的工作人员会在3个工作日内与您联系</p>
+            <form onsubmit="event.preventDefault(); alert('感谢您的报名！我们的工作人员会在3个工作日内与您联系。');">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>姓名 *</label>
+                        <input type="text" placeholder="请输入您的姓名" required>
+                    </div>
+                    <div class="form-group">
+                        <label>性别 *</label>
+                        <select required>
+                            <option value="">请选择</option>
+                            <option value="male">男</option>
+                            <option value="female">女</option>
+                            <option value="other">其他</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>年龄 *</label>
+                        <input type="number" placeholder="请输入年龄" min="18" required>
+                    </div>
+                    <div class="form-group">
+                        <label>联系电话 *</label>
+                        <input type="tel" placeholder="请输入手机号码" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>电子邮箱 *</label>
+                        <input type="email" placeholder="请输入邮箱地址" required>
+                    </div>
+                    <div class="form-group">
+                        <label>所在城市 *</label>
+                        <input type="text" placeholder="请输入所在城市" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>意向岗位 *（可多选）</label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="role" value="rescue">
+                            <span>现场救援员</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="role" value="care">
+                            <span>医疗护理员</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="role" value="promote">
+                            <span>科普宣传员</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="role" value="foster">
+                            <span>临时寄养家庭</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="role" value="photo">
+                            <span>设计摄影师</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="role" value="tech">
+                            <span>技术支持员</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>每周可服务时间 *</label>
+                    <select required>
+                        <option value="">请选择</option>
+                        <option value="1-2">1-2小时</option>
+                        <option value="3-5">3-5小时</option>
+                        <option value="5-10">5-10小时</option>
+                        <option value="10+">10小时以上</option>
+                        <option value="flexible">时间灵活，可配合紧急任务</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>相关经验或特长</label>
+                    <textarea placeholder="请描述您的相关经验、技能或特长，例如：饲养鹦鹉经验、兽医背景、摄影技能等"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>为什么想加入我们？</label>
+                    <textarea placeholder="请简单描述您加入志愿者的动机和期望"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width:100%;padding:16px;">提交报名</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-grid">
+            <div>
+                <h4>🦜 玄凤守护计划</h4>
+                <p>致力于玄凤鹦鹉的保护与救助，<br>让每一只小精灵都有温暖的家。</p>
+            </div>
+            <div>
+                <h4>快速链接</h4>
+                <p><a href="index.html">首页</a></p>
+                <p><a href="protection.html">保护倡议</a></p>
+                <p><a href="care-guide.html">饲养指南</a></p>
+                <p><a href="rescue.html">救助行动</a></p>
+            </div>
+            <div>
+                <h4>参与方式</h4>
+                <p><a href="volunteer.html">成为志愿者</a></p>
+                <p><a href="rescue.html">领养鹦鹉</a></p>
+                <p><a href="contact.html">捐赠支持</a></p>
+                <p><a href="contact.html">联系我们</a></p>
+            </div>
+            <div>
+                <h4>联系方式</h4>
+                <p>📞 救助热线：400-XXX-XXXX</p>
+                <p>📧 邮箱：rescue@cockatiel.org</p>
+                <p>📍 地址：XX市XX区XX路XX号</p>
+                <p>🕐 工作时间：周一至周日 9:00-21:00</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 玄凤鹦鹉守护计划 | 让每一只小精灵都被温柔以待 🦜</p>
+        </div>
+    </footer>
+</body>
+</html>

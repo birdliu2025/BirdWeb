@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>救助行动(假的) - 玄凤鹦鹉守护计划</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .page-header {
+            background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+            padding: 140px 20px 80px;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 2.8rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .process-section {
+            background: white;
+            padding: 60px;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            margin-bottom: 40px;
+        }
+
+        .process-section h3 {
+            font-size: 1.8rem;
+            margin-bottom: 40px;
+            text-align: center;
+            color: var(--dark);
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            position: relative;
+        }
+
+        .process-steps::before {
+            content: '';
+            position: absolute;
+            top: 35px;
+            left: 12%;
+            right: 12%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            z-index: 0;
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-number {
+            width: 70px; height: 70px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            border: 4px solid white;
+            box-shadow: 0 4px 15px rgba(245,158,11,0.3);
+        }
+
+        .step h4 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .step p {
+            color: var(--gray);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .rescue-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .rescue-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+        }
+
+        .rescue-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+
+        .rescue-card .status {
+            padding: 8px 16px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+            border-radius: 0 0 12px 0;
+        }
+
+        .status-rescuing { background: #fee2e2; color: #dc2626; }
+        .status-recovering { background: #dbeafe; color: #2563eb; }
+        .status-adoptable { background: #d1fae5; color: #059669; }
+        .status-adopted { background: #e2e8f0; color: #64748b; }
+
+        .rescue-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .rescue-card-body {
+            padding: 25px;
+        }
+
+        .rescue-card-body h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .rescue-card-body .meta {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .rescue-card-body p {
+            color: var(--gray);
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .emergency-section {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            padding: 60px;
+            border-radius: 20px;
+            color: white;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .emergency-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+        }
+
+        .emergency-section p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .emergency-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+            text-align: left;
+        }
+
+        .emergency-item {
+            background: rgba(255,255,255,0.15);
+            padding: 25px;
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+        }
+
+        .emergency-item h4 {
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .emergency-item ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .emergency-item li {
+            padding: 6px 0;
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .report-form {
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .report-form h3 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            text-align: center;
+            color: var(--dark);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .process-steps { grid-template-columns: 1fr; }
+            .process-steps::before { display: none; }
+            .rescue-grid { grid-template-columns: 1fr; }
+            .emergency-grid { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+            .process-section { padding: 30px; }
+            .emergency-section { padding: 30px; }
+            .report-form { padding: 30px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">🦜</div>
+                <span>玄凤守护计划</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="protection.html">保护倡议</a></li>
+                <li><a href="care-guide.html">饲养指南</a></li>
+                <li><a href="rescue.html" class="active">救助行动</a></li>
+                <li><a href="volunteer.html">志愿者招募</a></li>
+                <li><a href="contact.html">联系我们</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <h1>🚑 救助行动</h1>
+        <p>每一次救助都是一场生命的接力，让我们一起为无家可归的玄凤鹦鹉点亮希望</p>
+    </header>
+
+    <!-- 救助流程 -->
+    <section class="section">
+        <div class="process-section">
+            <h3>🔄 救助流程</h3>
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h4>发现报告</h4>
+                    <p>发现需要救助的玄凤鹦鹉后，通过热线或在线表单报告，提供详细位置和情况描述</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h4>现场救援</h4>
+                    <p>专业志愿者团队迅速响应，前往现场进行安全捕捉和初步健康评估</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h4>医疗护理</h4>
+                    <p>送往合作宠物医院进行详细检查和治疗，提供营养补充和心理安抚</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h4>领养回家</h4>
+                    <p>康复后通过严格审核为鹦鹉寻找有爱的新家庭，定期回访确保幸福生活</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 紧急救助指南 -->
+    <section class="section">
+        <div class="emergency-section">
+            <h2>🚨 发现需要救助的玄凤鹦鹉？</h2>
+            <p>玄凤鹦鹉在野外无法独立生存，如果您发现受伤、走失或被遗弃的玄凤鹦鹉，请按照以下步骤操作</p>
+            <a href="#report-form" class="btn" style="background:white;color:#ef4444;">立即报告救助</a>
+            
+            <div class="emergency-grid">
+                <div class="emergency-item">
+                    <h4>📞 第一步：联系我们</h4>
+                    <ul>
+                        <li>拨打24小时救助热线：400-XXX-XXXX</li>
+                        <li>发送邮件至：rescue@cockatiel.org</li>
+                        <li>微信添加：CockatielRescue</li>
+                        <li>提供准确位置和鹦鹉状况</li>
+                    </ul>
+                </div>
+                <div class="emergency-item">
+                    <h4>🛡️ 第二步：安全保护</h4>
+                    <ul>
+                        <li>不要强行捕捉，避免鹦鹉受惊飞走</li>
+                        <li>如果鹦鹉受伤，可用毛巾轻轻包裹</li>
+                        <li>放置在安静、温暖、通风的地方</li>
+                        <li>避免猫狗等宠物接近</li>
+                    </ul>
+                </div>
+                <div class="emergency-item">
+                    <h4>🍽️ 第三步：临时照料</h4>
+                    <ul>
+                        <li>提供干净的饮用水和少量小米</li>
+                        <li>不要喂食人类食物或不明食物</li>
+                        <li>保持环境安静，减少惊吓</li>
+                        <li>等待专业志愿者到达</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 待领养鹦鹉 -->
+    <section class="section">
+        <div class="section-title">
+            <h2>🏠 等待领养的玄凤鹦鹉</h2>
+            <p>这些可爱的小精灵已经康复，正在等待一个有爱的新家</p>
+        </div>
+        <div class="rescue-grid">
+            <div class="rescue-card">
+                <span class="status status-adoptable">可领养</span>
+                <img src="https://kimi-web-img.moonshot.cn/img/picn.huitu.com/cd2758f41a45f698e344d10530be19c5bb8b5e31.jpg" alt="小灰">
+                <div class="rescue-card-body">
+                    <h3>小灰</h3>
+                    <div class="meta">
+                        <span>🎂 2岁</span>
+                        <span>♂ 雄性</span>
+                        <span>📍 北京站</span>
+                    </div>
+                    <p>小灰是一只被遗弃的灰色玄凤鹦鹉，被发现时羽毛稀疏、精神萎靡。经过三个月的精心照料，现在已经完全康复，性格温顺亲人，喜欢吹口哨。</p>
+                    <a href="contact.html" class="btn btn-primary" style="width:100%;text-align:center;">申请领养</a>
+                </div>
+            </div>
+            <div class="rescue-card">
+                <span class="status status-recovering">康复中</span>
+                <img src="https://kimi-web-img.moonshot.cn/img/picn.huitu.com/915acc9ead760599d8b4c3c7a5b04509594b62af.jpg" alt="小黄">
+                <div class="rescue-card-body">
+                    <h3>小黄</h3>
+                    <div class="meta">
+                        <span>🎂 1岁</span>
+                        <span>♀ 雌性</span>
+                        <span>📍 上海站</span>
+                    </div>
+                    <p>小黄因主人搬家被遗弃在小区花园，被发现时翅膀受伤。目前正在康复中，预计一个月后可以开放领养。性格活泼好动，喜欢与人互动。</p>
+                    <a href="#" class="btn btn-outline" style="width:100%;text-align:center;pointer-events:none;opacity:0.6;">暂不可领养</a>
+                </div>
+            </div>
+            <div class="rescue-card">
+                <span class="status status-adopted">已领养</span>
+                <img src="https://kimi-web-img.moonshot.cn/img/pic.huitu.com/1ce46d372289c2d273ad8a16cd9c3528e9ea8810.jpg" alt="豆豆">
+                <div class="rescue-card-body">
+                    <h3>豆豆</h3>
+                    <div class="meta">
+                        <span>🎂 3岁</span>
+                        <span>♂ 雄性</span>
+                        <span>📍 广州站</span>
+                    </div>
+                    <p>豆豆是一只走失的黄色玄凤鹦鹉，通过脚环信息成功联系到原主人，但原主人表示无法继续饲养。现已成功被新家庭领养，过上了幸福的生活。</p>
+                    <a href="#" class="btn" style="width:100%;text-align:center;background:#e2e8f0;color:#64748b;pointer-events:none;">已找到新家</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 救助报告表单 -->
+    <section class="section" id="report-form">
+        <div class="report-form">
+            <h3>📝 救助报告</h3>
+            <p style="text-align:center;color:var(--gray);margin-bottom:30px;">发现需要救助的玄凤鹦鹉？请填写以下信息，我们会尽快与您联系</p>
+            <form onsubmit="event.preventDefault(); alert('感谢您的报告！我们的志愿者会尽快与您联系。');">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>您的姓名 *</label>
+                        <input type="text" placeholder="请输入您的姓名" required>
+                    </div>
+                    <div class="form-group">
+                        <label>联系电话 *</label>
+                        <input type="tel" placeholder="请输入手机号码" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>发现地点 *</label>
+                        <input type="text" placeholder="请提供详细地址" required>
+                    </div>
+                    <div class="form-group">
+                        <label>发现时间 *</label>
+                        <input type="datetime-local" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>鹦鹉状况 *</label>
+                    <select required>
+                        <option value="">请选择鹦鹉状况</option>
+                        <option value="injured">受伤/虚弱</option>
+                        <option value="lost">走失/迷路</option>
+                        <option value="abandoned">被遗弃</option>
+                        <option value="healthy">看起来健康</option>
+                        <option value="unknown">不确定</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>详细描述</label>
+                    <textarea placeholder="请描述鹦鹉的外观特征、行为状态、周围环境等信息，越详细越好"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>是否已采取临时措施</label>
+                    <textarea placeholder="例如：已提供食物和水、已安置在纸箱中等"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width:100%;padding:16px;">提交救助报告</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-grid">
+            <div>
+                <h4>🦜 玄凤守护计划</h4>
+                <p>致力于玄凤鹦鹉的保护与救助，<br>让每一只小精灵都有温暖的家。</p>
+            </div>
+            <div>
+                <h4>快速链接</h4>
+                <p><a href="index.html">首页</a></p>
+                <p><a href="protection.html">保护倡议</a></p>
+                <p><a href="care-guide.html">饲养指南</a></p>
+                <p><a href="rescue.html">救助行动</a></p>
+            </div>
+            <div>
+                <h4>参与方式</h4>
+                <p><a href="volunteer.html">成为志愿者</a></p>
+                <p><a href="rescue.html">领养鹦鹉</a></p>
+                <p><a href="contact.html">捐赠支持</a></p>
+                <p><a href="contact.html">联系我们</a></p>
+            </div>
+            <div>
+                <h4>联系方式</h4>
+                <p>📞 救助热线：400-XXX-XXXX</p>
+                <p>📧 邮箱：rescue@cockatiel.org</p>
+                <p>📍 地址：XX市XX区XX路XX号</p>
+                <p>🕐 工作时间：周一至周日 9:00-21:00</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 玄凤鹦鹉守护计划 | 让每一只小精灵都被温柔以待 🦜</p>
+        </div>
+    </footer>
+</body>
+</html>

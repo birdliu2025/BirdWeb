@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>科学饲养指南(假的) - 玄凤鹦鹉守护计划</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .page-header {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            padding: 140px 20px 80px;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 2.8rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* 标签页 */
+        .tabs-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .tabs-nav {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .tab-btn {
+            padding: 12px 28px;
+            border-radius: 50px;
+            border: 2px solid #e2e8f0;
+            background: white;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            color: var(--gray);
+        }
+
+        .tab-btn:hover, .tab-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .guide-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+
+        .guide-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .guide-card h3 .icon {
+            width: 40px; height: 40px;
+            background: var(--light);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+
+        .guide-card p, .guide-card li {
+            color: var(--gray);
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+
+        .guide-card ul {
+            padding-left: 20px;
+        }
+
+        .guide-card ul li {
+            margin-bottom: 8px;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #fee2e2 0%, #fef2f2 100%);
+            border-left: 4px solid var(--accent);
+            padding: 20px 25px;
+            border-radius: 0 12px 12px 0;
+            margin: 20px 0;
+        }
+
+        .warning-box strong {
+            color: var(--accent);
+        }
+
+        .tip-box {
+            background: linear-gradient(135deg, #dbeafe 0%, #eff6ff 100%);
+            border-left: 4px solid #3b82f6;
+            padding: 20px 25px;
+            border-radius: 0 12px 12px 0;
+            margin: 20px 0;
+        }
+
+        .tip-box strong {
+            color: #3b82f6;
+        }
+
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .food-item {
+            background: var(--cream);
+            padding: 20px;
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .food-item .emoji {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .food-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .food-item p {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--primary);
+            border-radius: 3px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding-left: 20px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 5px;
+            width: 16px; height: 16px;
+            background: var(--primary);
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px var(--primary);
+        }
+
+        .timeline-item h4 {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            color: var(--dark);
+        }
+
+        @media (max-width: 768px) {
+            .food-grid { grid-template-columns: 1fr; }
+            .guide-card { padding: 25px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">🦜</div>
+                <span>玄凤守护计划</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="protection.html">保护倡议</a></li>
+                <li><a href="care-guide.html" class="active">饲养指南</a></li>
+                <li><a href="rescue.html">救助行动</a></li>
+                <li><a href="volunteer.html">志愿者招募</a></li>
+                <li><a href="contact.html">联系我们</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <h1>📖 科学饲养指南</h1>
+        <p>全面了解玄凤鹦鹉的饲养知识，做一个负责任的饲主，让小家伙健康快乐地陪伴你</p>
+    </header>
+
+    <div class="tabs-container">
+        <div class="tabs-nav">
+            <button class="tab-btn active" onclick="showTab('environment')">🏠 居住环境</button>
+            <button class="tab-btn" onclick="showTab('diet')">🥗 饮食营养</button>
+            <button class="tab-btn" onclick="showTab('health')">💊 健康管理</button>
+            <button class="tab-btn" onclick="showTab('behavior')">🧠 行为训练</button>
+            <button class="tab-btn" onclick="showTab('daily')">📅 日常护理</button>
+        </div>
+
+        <!-- 居住环境 -->
+        <div id="environment" class="tab-content active">
+            <div class="guide-card">
+                <h3><span class="icon">🏠</span>笼舍选择</h3>
+                <p>玄凤鹦鹉是活跃的鸟类，需要足够的空间来活动和展开翅膀。笼子的大小应该<strong>至少让鹦鹉能够展开翅膀飞翔</strong>。</p>
+                <ul>
+                    <li><strong>最小尺寸：</strong>建议笼子尺寸不低于 60cm × 45cm × 60cm（长×宽×高）</li>
+                    <li><strong>材质：</strong>选择坚固的金属材质，避免鹦鹉啄咬损坏</li>
+                    <li><strong>间距：</strong>笼条间距不超过 1.5cm，防止鹦鹉头部卡住</li>
+                    <li><strong>底部：</strong>可抽拉的托盘，方便清理粪便</li>
+                </ul>
+                <div class="warning-box">
+                    <strong>⚠️ 注意：</strong>不要用圆形笼子！圆形笼子会让鹦鹉失去方向感，容易产生心理压力。请选择方形或长方形的笼子。
+                </div>
+            </div>
+
+            <div class="guide-card">
+                <h3><span class="icon">🌡️</span>环境要求</h3>
+                <ul>
+                    <li><strong>温度：</strong>适宜温度为 20-28℃，避免冷风直吹。冬季注意保温，夏季避免超过 35℃</li>
+                    <li><strong>湿度：</strong>保持 40%-60% 的相对湿度</li>
+                    <li><strong>光照：</strong>每天需要 10-12 小时的自然光照，避免阳光直射</li>
+                    <li><strong>位置：</strong>放置在安静、通风但无穿堂风的地方，远离厨房和卫生间</li>
+                </ul>
+                <div class="tip-box">
+                    <strong>💡 小贴士：</strong>夏季注意室内通风，别把鸟笼放在光照强烈的地方。当环境温度超过 35℃时，大多数鹦鹉会烦躁不安；超过 37℃时，个别体质差的鹦鹉可能因中枢神经麻痹而死亡。
+                </div>
+            </div>
+
+            <div class="guide-card">
+                <h3><span class="icon">🎮</span>玩具与设施</h3>
+                <p>玄凤鹦鹉需要各种玩具来保持活跃和快乐，满足其啃咬和探索的天性。</p>
+                <ul>
+                    <li><strong>站杆：</strong>提供不同粗细的站杆，帮助锻炼脚部肌肉。建议选用天然树枝</li>
+                    <li><strong>啃咬玩具：</strong>木制玩具、磨牙棒、纸壳玩具等，满足啃咬需求</li>
+                    <li><strong>攀爬架：</strong>吊床、绳索、梯子等，提供更多活动空间</li>
+                    <li><strong>铃铛：</strong>玄凤鹦鹉喜欢发出声音，铃铛可以增加娱乐性</li>
+                    <li><strong>镜子：</strong>部分玄凤鹦鹉喜欢照镜子，但要注意不要过度依赖</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 饮食营养 -->
+        <div id="diet" class="tab-content">
+            <div class="guide-card">
+                <h3><span class="icon">🌾</span>主食搭配</h3>
+                <p>玄凤鹦鹉是杂食性动物，饮食应该多样化且富含营养，包括种子、谷物、蔬果和少量蛋白质。</p>
+                <div class="food-grid">
+                    <div class="food-item">
+                        <div class="emoji">🌾</div>
+                        <h4>种子谷物</h4>
+                        <p>黄谷子、五色黍子、加纳利子、燕麦等混合粮</p>
+                    </div>
+                    <div class="food-item">
+                        <div class="emoji">🥬</div>
+                        <h4>新鲜蔬菜</h4>
+                        <p>菠菜、胡萝卜、西兰花、甜椒等</p>
+                    </div>
+                    <div class="food-item">
+                        <div class="emoji">🍎</div>
+                        <h4>水果</h4>
+                        <p>苹果、梨、葡萄、蓝莓等（去核）</p>
+                    </div>
+                    <div class="food-item">
+                        <div class="emoji">🥜</div>
+                        <h4>坚果种子</h4>
+                        <p>少量葵花籽、花生等（高热量，少量）</p>
+                    </div>
+                    <div class="food-item">
+                        <div class="emoji">🥚</div>
+                        <h4>蛋白质</h4>
+                        <p>煮熟的鸡蛋、豆类、少量肉类</p>
+                    </div>
+                    <div class="food-item">
+                        <div class="emoji">💊</div>
+                        <h4>保健砂</h4>
+                        <p>补充钙质和矿物质，预防骨骼疾病</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="guide-card">
+                <h3><span class="icon">🚫</span>禁食清单</h3>
+                <div class="warning-box">
+                    <strong>以下食物对玄凤鹦鹉有毒或有害，绝对禁止喂食：</strong>
+                </div>
+                <ul>
+                    <li>🍫 <strong>巧克力/咖啡/茶</strong> - 含有可可碱和咖啡因，对鸟类剧毒</li>
+                    <li>🥑 <strong>牛油果</strong> - 含有persin毒素，可导致呼吸困难</li>
+                    <li>🧅 <strong>洋葱/大蒜</strong> - 会破坏红细胞，导致贫血</li>
+                    <li>🧂 <strong>高盐/高糖食物</strong> - 人类零食、加工食品等</li>
+                    <li>🍇 <strong>水果核/种子</strong> - 苹果核、樱桃核等含有氰化物</li>
+                    <li>🍞 <strong>生面团/酵母</strong> - 在嗉囊中发酵会产生酒精</li>
+                    <li>🧈 <strong>油腻食物</strong> - 油炸食品、黄油等</li>
+                    <li>🥛 <strong>乳制品</strong> - 鹦鹉无法消化乳糖</li>
+                </ul>
+            </div>
+
+            <div class="guide-card">
+                <h3><span class="icon">💧</span>饮水要求</h3>
+                <ul>
+                    <li>每天更换新鲜饮用水，保持饮水器清洁</li>
+                    <li>使用专用鸟类饮水器，避免水被粪便污染</li>
+                    <li>夏季可增加换水频率，防止细菌滋生</li>
+                    <li>避免使用自来水中的氯水，可使用凉白开或过滤水</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 健康管理 -->
+        <div id="health" class="tab-content">
+            <div class="guide-card">
+                <h3><span class="icon">🏥</span>定期健康检查</h3>
+                <p>定期带玄凤鹦鹉去兽医那里进行检查，确保它们的健康状况良好。及时发现并治疗潜在的健康问题非常重要。</p>
+                <ul>
+                    <li><strong>年度体检：</strong>每年至少进行一次全面体检</li>
+                    <li><strong>体重监测：</strong>定期称重，体重突然变化可能是健康问题的信号</li>
+                    <li><strong>羽毛检查：</strong>观察羽毛光泽度和完整性</li>
+                    <li><strong>粪便观察：</strong>健康的粪便应为墨绿色螺旋状固体 + 白色尿酸</li>
+                </ul>
+                <div class="tip-box">
+                    <strong>💡 观察粪便判断健康：</strong><br>
+                    ✅ 完美便便：墨绿色螺旋状 + 白色尿酸（像抹茶冰淇淋）<br>
+                    ⚠️ 腹泻：黄绿色水样便（可能是沙门氏菌感染）<br>
+                    🚨 血便：红色粘液便（误食尖锐物或肿瘤）<br>
+                    🚨 黑色柏油便：内脏出血，立即送医！
+                </div>
+            </div>
+
+            <div class="guide-card">
+                <h3><span class="icon">🛁</span>洗澡护理</h3>
+                <p>玄凤鹦鹉喜欢洗澡，这对它们的羽毛和皮肤健康非常重要。</p>
+                <ul>
+                    <li>提供一个浅盆或喷雾器，让鹦鹉在温暖的环境下洗澡</li>
+                    <li>水温适宜，不要太热或太冷</li>
+                    <li>洗澡后确保鹦鹉能自然晾干，避免着凉</li>
+                    <li>如果鹦鹉不喜欢水，可以提供湿漉漉的毛巾或潮湿的环境</li>
+                </ul>
+            </div>
+
+            <div class="guide-card">
+                <h3><span class="icon">✂️</span>剪羽与修甲</h3>
+                <p>剪羽是最直接有效的保护鹦鹉的方法，防止幼鹦鹉飞逃，以及飞行可能带来的危险和伤害。</p>
+                <ul>
+                    <li><strong>剪羽：</strong>建议请专业人士操作，只剪初级飞羽，保留二级飞羽用于滑翔</li>
+                    <li><strong>修甲：</strong>定期修剪过长的指甲，防止抓伤和站立不稳</li>
+                    <li><strong>喙部护理：</strong>提供磨牙玩具，保持喙部健康</li>
+                </ul>
+                <div class="warning-box">
+                    <strong>⚠️ 注意：</strong>剪羽不等于完全剥夺飞行能力，而是限制飞行高度和距离。剪羽后的鹦鹉仍然可以短距离滑翔，避免摔伤。
+                </div>
+            </div>
+        </div>
+
+        <!-- 行为训练 -->
+        <div id="behavior" class="tab-content">
+            <div class="guide-card">
+                <h3><span class="icon">🎯</span>建立信任三步法</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h4>第一阶段：潜伏期（3-7天）</h4>
+                        <p>用深色布遮住半面笼子（增加安全感），每天固定时间轻声说话。不要急于互动，让鹦鹉适应新环境。</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>第二阶段：破冰期（第2周）</h4>
+                        <p>手捧食盒静止10分钟，等它主动靠近。在它理毛时突然递入苹果片（制造惊喜感），建立正面联想。</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>第三阶段：亲密期（1个月后）</h4>
+                        <p>训练"上手"指令时晃动手指（模拟树枝颤动本能），顺着羽毛方向轻抚后颈。奖励积极行为，忽略负面行为。</p>
+                    </div>
+                </div>
+                <div class="warning-box">
+                    <strong>🚫 禁忌：</strong>绝对不能在它炸毛时强行互动！这相当于人类洗澡时被破门而入，后果可能是终身不亲人了。
+                </div>
+            </div>
+
+            <div class="guide-card">
+                <h3><span class="icon">🎵</span>玄凤鹦鹉的语言能力</h3>
+                <p>玄凤鹦鹉是优秀的"口哨大师"，部分个体能学会吹口哨甚至模仿简单的词语。</p>
+                <ul>
+                    <li>雄性玄凤鹦鹉通常比雌性更擅长鸣叫和模仿</li>
+                    <li>在安静的环境中重复播放简单的旋律或词语</li>
+                    <li>每天固定时间进行训练，每次10-15分钟</li>
+                    <li>用食物奖励来强化学习行为</li>
+                </ul>
+            </div>
+
+            <div class="guide-card">
+                <h3><span class="icon">😰</span>常见行为问题</h3>
+                <ul>
+                    <li><strong>尖叫：</strong>通常是寻求关注或表达不满，不要回应尖叫，只在安静时给予关注</li>
+                    <li><strong>啄羽：</strong>可能是无聊、压力或营养不良导致，增加玩具和互动，检查饮食</li>
+                    <li><strong>咬人：</strong>通常是恐惧或领地意识，不要惩罚，用转移注意力的方式化解</li>
+                    <li><strong>拔毛：</strong>严重的心理问题，需要专业兽医介入</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 日常护理 -->
+        <div id="daily" class="tab-content">
+            <div class="guide-card">
+                <h3><span class="icon">📋</span>每日护理清单</h3>
+                <ul>
+                    <li>✅ 更换饮用水和食物，清理食盆和水盆</li>
+                    <li>✅ 清理笼子底部的粪便和食物残渣</li>
+                    <li>✅ 检查鹦鹉的精神状态和食欲</li>
+                    <li>✅ 与鹦鹉互动至少30分钟</li>
+                    <li>✅ 检查玩具是否完好，及时更换破损玩具</li>
+                </ul>
+            </div>
+
+            <div class="guide-card">
+                <h3><span class="icon">📅</span>每周护理清单</h3>
+                <ul>
+                    <li>✅ 彻底清洗笼子、站杆和玩具</li>
+                    <li>✅ 用淡盐水或稀释的消毒液浸泡消毒</li>
+                    <li>✅ 更换垫料或清洗托盘</li>
+                    <li>✅ 检查鹦鹉的体重和羽毛状况</li>
+                    <li>✅ 清洗和消毒饮水器</li>
+                </ul>
+            </div>
+
+            <div class="guide-card">
+                <h3><span class="icon">🧹</span>消毒方法</h3>
+                <p>鹦鹉的粪便、羽毛在温暖潮湿的居家环境中是细菌滋生的温床，定期消毒至关重要。</p>
+                <ul>
+                    <li>在清洁的盆中放入冷水，加入几匙精盐和少许柠檬汁酿成浸泡液</li>
+                    <li>水果和蔬菜在其中浸泡5-10分钟</li>
+                    <li>叶菜浸泡3分钟左右后取出</li>
+                    <li>再以流动的自来水冲漂干净</li>
+                    <li>笼具可用稀释的F10消毒液或白醋水擦拭</li>
+                </ul>
+                <div class="warning-box">
+                    <strong>⚠️ 注意：</strong>食物的消毒不能采用通常的家用洗涤剂和消毒液，这些化学物质对鹦鹉有毒。
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showTab(tabId) {
+            // 隐藏所有内容
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            // 移除所有按钮的active状态
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            // 显示选中的内容
+            document.getElementById(tabId).classList.add('active');
+            // 激活对应的按钮
+            event.target.classList.add('active');
+        }
+    </script>
+
+    <footer class="footer">
+        <div class="footer-grid">
+            <div>
+                <h4>🦜 玄凤守护计划</h4>
+                <p>致力于玄凤鹦鹉的保护与救助，<br>让每一只小精灵都有温暖的家。</p>
+            </div>
+            <div>
+                <h4>快速链接</h4>
+                <p><a href="index.html">首页</a></p>
+                <p><a href="protection.html">保护倡议</a></p>
+                <p><a href="care-guide.html">饲养指南</a></p>
+                <p><a href="rescue.html">救助行动</a></p>
+            </div>
+            <div>
+                <h4>参与方式</h4>
+                <p><a href="volunteer.html">成为志愿者</a></p>
+                <p><a href="rescue.html">领养鹦鹉</a></p>
+                <p><a href="contact.html">捐赠支持</a></p>
+                <p><a href="contact.html">联系我们</a></p>
+            </div>
+            <div>
+                <h4>联系方式</h4>
+                <p>📞 救助热线：400-XXX-XXXX</p>
+                <p>📧 邮箱：rescue@cockatiel.org</p>
+                <p>📍 地址：XX市XX区XX路XX号</p>
+                <p>🕐 工作时间：周一至周日 9:00-21:00</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 玄凤鹦鹉守护计划 | 让每一只小精灵都被温柔以待 🦜</p>
+        </div>
+    </footer>
+</body>
+</html>
