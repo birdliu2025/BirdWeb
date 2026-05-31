@@ -1,390 +1,104 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>玄凤鹦鹉守护计划(假的) - 让每一只小精灵都有温暖的家</title>
-    <link rel="stylesheet" href="style.css">
+    <title>布局示例 - 卡片展示</title>
     <style>
-        /* 首页特有样式 */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            background: linear-gradient(135deg, #fef3c7 0%, #fffbeb 50%, #fef3c7 100%);
-            padding-top: 70px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -100px; right: -100px;
-            width: 500px; height: 500px;
-            background: rgba(245,158,11,0.1);
-            border-radius: 50%;
-        }
-
-        .hero::after {
-            content: '';
-            position: absolute;
-            bottom: -150px; left: -100px;
-            width: 400px; height: 400px;
-            background: rgba(16,185,129,0.08);
-            border-radius: 50%;
-        }
-
-        .hero-container {
+        /* 整体容器 */
+        .container {
             max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+            margin: 0 auto;      /* 水平居中 */
+            padding: 20px;
+        }
+
+        /* 标题栏用 Flex */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+        .nav-links a {
+            margin-left: 20px;
+            text-decoration: none;
+            color: #2c7a64;
+        }
+
+        /* 卡片网格：用 Grid 实现响应式卡片布局 */
+        .card-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-            position: relative;
-            z-index: 1;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
         }
 
-        .hero-content h1 {
-            font-size: 3.2rem;
-            line-height: 1.2;
-            margin-bottom: 20px;
-            color: var(--dark);
-        }
-
-        .hero-content h1 span {
-            color: var(--primary);
-        }
-
-        .hero-content p {
-            font-size: 1.2rem;
-            color: var(--gray);
-            margin-bottom: 35px;
-            line-height: 1.8;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .hero-image {
-            position: relative;
-        }
-
-        .hero-image img {
-            width: 100%;
-            max-width: 500px;
-            border-radius: 30px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
-            transform: rotate(3deg);
-            transition: transform 0.5s;
-        }
-
-        .hero-image:hover img {
-            transform: rotate(0deg) scale(1.02);
-        }
-
-        .hero-badge {
-            position: absolute;
-            bottom: 30px; left: -20px;
+        /* 单个卡片样式 */
+        .card {
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 16px;
             background: white;
-            padding: 15px 25px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            display: flex;
-            align-items: center;
-            gap: 12px;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
-
-        .hero-badge .number {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--primary);
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 20px -10px rgba(0,0,0,0.1);
         }
-
-        .hero-badge .text {
-            font-size: 0.9rem;
-            color: var(--gray);
+        .card h3 {
+            margin: 0 0 8px 0;
+            color: #0f172a;
+        }
+        .card p {
+            color: #475569;
             line-height: 1.4;
+            margin: 0 0 16px 0;
         }
-
-        /* 统计数据 */
-        .stats-section {
-            background: var(--dark);
-            padding: 60px 20px;
-        }
-
-        .stats-grid {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 40px;
-            text-align: center;
-        }
-
-        .stat-item {
+        .btn {
+            display: inline-block;
+            background: #2c7a64;
             color: white;
-        }
-
-        .stat-item .number {
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--primary);
-        }
-
-        .stat-item .label {
-            color: #94a3b8;
-            margin-top: 8px;
-            font-size: 1rem;
-        }
-
-        /* 特色服务 */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-
-        .feature-card {
-            background: white;
-            padding: 40px 30px;
-            border-radius: 20px;
-            text-align: center;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-            transition: all 0.3s;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 40px rgba(0,0,0,0.1);
-        }
-
-        .feature-icon {
-            width: 70px; height: 70px;
-            background: var(--light);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            font-size: 2rem;
-        }
-
-        .feature-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 12px;
-        }
-
-        .feature-card p {
-            color: var(--gray);
-            line-height: 1.7;
-        }
-
-        /* 紧急救助横幅 */
-        .urgent-banner {
-            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
-            padding: 40px 20px;
-            text-align: center;
-            color: white;
-        }
-
-        .urgent-banner h2 {
-            font-size: 2rem;
-            margin-bottom: 10px;
-        }
-
-        .urgent-banner p {
-            font-size: 1.1rem;
-            margin-bottom: 20px;
-            opacity: 0.9;
-        }
-
-        /* 最新动态 */
-        .news-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-
-        /* 响应式 */
-        @media (max-width: 768px) {
-            .hero-container {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            .hero-content h1 { font-size: 2rem; }
-            .stats-grid { grid-template-columns: repeat(2, 1fr); }
-            .features-grid { grid-template-columns: 1fr; }
-            .news-grid { grid-template-columns: 1fr; }
-            .hero-buttons { justify-content: center; }
+            padding: 6px 14px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 0.85rem;
         }
     </style>
 </head>
-<body>
-    <!-- 导航栏 -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="logo">
-                <div class="logo-icon">🦜</div>
-                <span>玄凤守护计划</span>
-            </a>
-            <ul class="nav-links">
-                <li><a href="index.html" class="active">首页</a></li>
-                <li><a href="protection.html">保护倡议</a></li>
-                <li><a href="care-guide.html">饲养指南</a></li>
-                <li><a href="rescue.html">救助行动</a></li>
-                <li><a href="volunteer.html">志愿者招募</a></li>
-                <li><a href="contact.html">联系我们</a></li>
-            </ul>
+<body style="background: #f4f6f9; margin: 0;">
+    <div class="container">
+        <!-- 头部 Flex 布局 -->
+        <div class="header">
+            <h2>🎨 设计画廊</h2>
+            <div class="nav-links">
+                <a href="#">鸟鸟</a>
+                <a href="helpTheBird/index.html">救援</a>
+            </div>
         </div>
-    </nav>
 
-    <!-- 首页英雄区 -->
-    <section class="hero">
-        <div class="hero-container">
-            <div class="hero-content animate-in">
-                <h1>守护每一只<br><span>玄凤鹦鹉</span></h1>
-                <p>玄凤鹦鹉（鸡尾鹦鹉）是世界上最受欢迎的宠物鹦鹉之一。它们温顺可爱、聪明亲人，却因为主人的一时冲动而被遗弃。加入我们，为无家可归的小精灵们撑起一片温暖的天空。</p>
-                <div class="hero-buttons">
-                    <a href="rescue.html" class="btn btn-primary">参与救助</a>
-                    <a href="volunteer.html" class="btn btn-outline">成为志愿者</a>
-                </div>
-            </div>
-            <div class="hero-image animate-in">
-                <img src="https://kimi-web-img.moonshot.cn/img/pic.huitu.com/1ce46d372289c2d273ad8a16cd9c3528e9ea8810.jpg" alt="可爱的玄凤鹦鹉">
-                <div class="hero-badge">
-                    <div class="number">500+</div>
-                    <div class="text">已救助<br>玄凤鹦鹉</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 统计数据 -->
-    <section class="stats-section">
-        <div class="stats-grid">
-            <div class="stat-item">
-                <div class="number">500+</div>
-                <div class="label">成功救助</div>
-            </div>
-            <div class="stat-item">
-                <div class="number">300+</div>
-                <div class="label">找到新家</div>
-            </div>
-            <div class="stat-item">
-                <div class="number">200+</div>
-                <div class="label">活跃志愿者</div>
-            </div>
-            <div class="stat-item">
-                <div class="number">50+</div>
-                <div class="label">合作宠物医院</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 我们的使命 -->
-    <section class="section">
-        <div class="section-title">
-            <h2>我们的使命</h2>
-            <p>致力于玄凤鹦鹉的保护、救助与科学饲养推广，让每一只小精灵都能被温柔以待</p>
-        </div>
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">🏠</div>
-                <h3>收容救助</h3>
-                <p>为被遗弃、走失或受伤的玄凤鹦鹉提供临时收容和专业护理，帮助它们恢复健康，重新找到温暖的家。</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">📚</div>
-                <h3>科普教育</h3>
-                <p>普及玄凤鹦鹉的科学饲养知识，帮助饲主了解鹦鹉的生理需求和行为特点，减少因无知导致的弃养。</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🤝</div>
-                <h3>领养平台</h3>
-                <p>建立严格的领养审核机制，为康复的玄凤鹦鹉寻找有责任心、有条件的新家庭，杜绝二次弃养。</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- 紧急救助横幅 -->
-    <section class="urgent-banner">
-        <h2>🚨 发现需要救助的玄凤鹦鹉？</h2>
-        <p>如果您发现受伤、走失或被遗弃的玄凤鹦鹉，请立即联系我们，24小时救助热线随时待命</p>
-        <a href="contact.html" class="btn" style="background:white;color:#ef4444;">立即联系救助</a>
-    </section>
-
-    <!-- 最新救助动态 -->
-    <section class="section">
-        <div class="section-title">
-            <h2>最新救助动态</h2>
-            <p>关注我们的最新救助故事，见证小精灵们的重生之旅</p>
-        </div>
-        <div class="news-grid">
+        <!-- 卡片网格 Grid 布局 -->
+        <div class="card-grid">
             <div class="card">
-                <img src="https://kimi-web-img.moonshot.cn/img/p1.itc.cn/30bd07a2e87c6b12a767dbf46b1bc344121e5bf8.jpeg" alt="救助现场" class="card-img">
-                <div class="card-body">
-                    <span class="tag tag-accent">紧急救助</span>
-                    <h3>成都郊区数百只鹦鹉被放生，志愿者连夜救援</h3>
-                    <p>2023年11月，成都龙泉驿区有人放生数百只鹦鹉，包括玄凤鹦鹉、虎皮鹦鹉等。由于鹦鹉在野外一般无法存活，数十名志愿者连夜组队前往现场解救...</p>
-                </div>
+                <h3>清新风格</h3>
+                <p>使用Flex与Grid实现的自适应卡片，完美适配手机和电脑。</p>
+                <a href="#" class="btn">查看案例 →</a>
             </div>
             <div class="card">
-                <img src="https://kimi-web-img.moonshot.cn/img/picn.huitu.com/cd2758f41a45f698e344d10530be19c5bb8b5e31.jpg" alt="灰色玄凤鹦鹉" class="card-img">
-                <div class="card-body">
-                    <span class="tag tag-secondary">康复中</span>
-                    <h3>"小灰"的故事：从营养不良到健康活泼</h3>
-                    <p>小灰是一只被遗弃的灰色玄凤鹦鹉，被发现时羽毛稀疏、精神萎靡。经过志愿者三个月的精心照料，现在已经完全康复，正在等待领养...</p>
-                </div>
+                <h3>现代博客</h3>
+                <p>两栏布局，左侧侧边栏右侧文章流，经典且干净。</p>
+                <a href="#" class="btn">查看案例 →</a>
             </div>
             <div class="card">
-                <img src="https://kimi-web-img.moonshot.cn/img/inews.gtimg.com/0eba71ae886df9ab6299220aff59cc1ac1d2aac2" alt="志愿者" class="card-img">
-                <div class="card-body">
-                    <span class="tag tag-primary">领养成功</span>
-                    <h3>小姐姐自带"招鸟体质"，3个月救助7只小精灵</h3>
-                    <p>一位热心市民凭借对玄凤鹦鹉的了解，在短短三个月内成功救助了7只走失或被遗弃的玄凤鹦鹉，其中5只已经找到了温暖的新家...</p>
-                </div>
+                <h3>电商产品</h3>
+                <p>商品网格，hover微动效，提升用户浏览体验。</p>
+                <a href="#" class="btn">查看案例 →</a>
+            </div>
+            <div class="card">
+                <h3>个人名片</h3>
+                <p>利用flex居中，头像和介绍信息优雅展示。</p>
+                <a href="#" class="btn">查看案例 →</a>
             </div>
         </div>
-    </section>
-
-    <!-- 页脚 -->
-    <footer class="footer">
-        <div class="footer-grid">
-            <div>
-                <h4>🦜 玄凤守护计划</h4>
-                <p>致力于玄凤鹦鹉的保护与救助，<br>让每一只小精灵都有温暖的家。</p>
-            </div>
-            <div>
-                <h4>快速链接</h4>
-                <p><a href="index.html">首页</a></p>
-                <p><a href="protection.html">保护倡议</a></p>
-                <p><a href="care-guide.html">饲养指南</a></p>
-                <p><a href="rescue.html">救助行动</a></p>
-            </div>
-            <div>
-                <h4>参与方式</h4>
-                <p><a href="volunteer.html">成为志愿者</a></p>
-                <p><a href="rescue.html">领养鹦鹉</a></p>
-                <p><a href="contact.html">捐赠支持</a></p>
-                <p><a href="contact.html">联系我们</a></p>
-            </div>
-            <div>
-                <h4>联系方式</h4>
-                <p>📞 救助热线：400-XXX-XXXX</p>
-                <p>📧 邮箱：rescue@cockatiel.org</p>
-                <p>📍 地址：XX市XX区XX路XX号</p>
-                <p>🕐 工作时间：周一至周日 9:00-21:00</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>© 2026 玄凤鹦鹉守护计划 | 让每一只小精灵都被温柔以待 🦜</p>
-        </div>
-    </footer>
+    </div>
 </body>
 </html>
